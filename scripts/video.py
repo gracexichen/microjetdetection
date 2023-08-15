@@ -62,6 +62,7 @@ class Video(QThread):
 
             prev_droplet_list = droplet_list
 
+            print(droplet_speed)
             self.information_array.append(
                 [f, cimg, radius, droplet_speed, jet_width, jet_length, self.frame_number])
         self.save_data()
@@ -104,6 +105,7 @@ class Video(QThread):
         """
         self.ThreadActive = True
         self.preprocess(self.threshold)
+
         self.frame_number = 0
         # print(self.information_array)
         while self.ThreadActive:  # while the video isn't paused
@@ -160,7 +162,6 @@ class Video(QThread):
         filename = QFileDialog.getOpenFileName(
             None, 'Open file', 'c:\\', "Video files (*.avi *.mp4)")
         self.video_name = filename[0]
-        print(self.video_name)
         if self.video_name:
             self.frame_number = 0
             self.chooseThreshold()

@@ -12,11 +12,12 @@ class MyGUI(QMainWindow):
 
     Main UI window for the application. Contains all the widgets and processes any input
     """
-    conversion_factor = 1
 
     def __init__(self):
         super(MyGUI, self).__init__()
         uic.loadUi("mainwindow.ui", self)
+
+        self.conversion_factor = 0.000038
         self.video = Video()
         self.graphs = Graphs(self, width=5, height=4, dpi=100)
         self.threshold_image = None
@@ -37,10 +38,8 @@ class MyGUI(QMainWindow):
         self.detection_outline_button.setVisible(False)
         self.horizontalSlider.setVisible(False)
         self.speed_label.setVisible(False)
-        self.meters_button.clicked.connect(self.convert_units)
         self.set_threshold_button.clicked.connect(self.start_video)
         self.visible = True
-        self.pixels_button.clicked.connect(self.reset_units)
         self.video.video_status.connect(self.update_video_status)
         self.threshold_scroll_bar.valueChanged.connect(
             self.update_threshold_value)
@@ -48,6 +47,10 @@ class MyGUI(QMainWindow):
 
     def start_video(self):
         self.video.threshold = self.threshold_scroll_bar.value()
+        Frame.frame_rate = int(self.frame_rate_input.text())
+        self.frame_rate_input.setVisible(False)
+        self.threshold_scroll_bar.setVisible(False)
+        self.set_threshold_button.setVisible(False)
         self.video.start()
 
     def update_threshold_value(self, new_value):
@@ -65,17 +68,6 @@ class MyGUI(QMainWindow):
     def update_video_status(self, status):
         self.videolabel.clear()
         self.videolabel.setText(status)
-
-    def reset_units(self):
-        self.conversion_factor = 1
-
-    def convert_units(self):
-        self.conversion_factor = float(self.resolution_input.text())
-        Graphs.frameData = []
-        Graphs.radiusData = []
-        Graphs.lengthData = []
-        Graphs.widthData = []
-        Graphs.speedData = []
 
     def update_slider(self, frame_num):
         """Updates the slider with the current frame number
@@ -162,19 +154,15 @@ class MyGUI(QMainWindow):
         width: width of the jet
         speed: speed of the droplets
         """
-        if self.conversion_factor == 1:
-            label = "px"
-        else:
-            label = "m"
-
+        self.label.setText(str(self.video.frame_number))
         self.droplet_radius_label.setText(
-            "Droplet radius: " + self.scientific_notation(radius * self.conversion_factor) + label)
+            "Droplet radius: " + self.scientific_notation(radius * self.conversion_factor) + "m")
         self.jet_length_label.setText(
-            "Jet Length: " + self.scientific_notation(length * self.conversion_factor) + label)
+            "Jet Length: " + self.scientific_notation(length * self.conversion_factor) + "m")
         self.jet_width_label.setText(
-            "Jet Width: " + self.scientific_notation(width * self.conversion_factor) + label)
+            "Jet Width: " + self.scientific_notation(width * self.conversion_factor) + "m")
         self.droplet_speed_label.setText(
-            "Droplet speed: " + self.scientific_notation(speed * self.conversion_factor) + label + "/" + "s")
+            "Droplet speed: " + self.scientific_notation(speed * self.conversion_factor) + "m" + "/" + "s")
 
     def scientific_notation(self, number):
         num_str = str(number)
@@ -199,11 +187,10 @@ class MyGUI(QMainWindow):
         speed: speed of the droplets
         frame: the frame number video is on
         """
-        if self.conversion_factor != 1:
-            radius = radius * self.conversion_factor
-            length = length * self.conversion_factor
-            width = width * self.conversion_factor
-            speed = speed * self.conversion_factor
+        radius = radius * self.conversion_factor
+        length = length * self.conversion_factor
+        width = width * self.conversion_factor
+        speed = speed * self.conversion_factor
 
         self.graphs.ax1.lines.clear()
         self.graphs.ax2.lines.clear()
