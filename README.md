@@ -1,6 +1,5 @@
-# Microjet Detection
+# Microjet Detection Installation
 Works with .mp4 and .avi files
-##Installation Instructions
 - Install Python
 - Open terminal
 - Download the scripts folder into the same directory
