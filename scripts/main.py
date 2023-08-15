@@ -63,7 +63,6 @@ class MyGUI(QMainWindow):
         self.videolabel.setPixmap(QPixmap.fromImage(new_img))
 
     def update_video_status(self, status):
-        print(status)
         self.videolabel.clear()
         self.videolabel.setText(status)
 
@@ -92,7 +91,6 @@ class MyGUI(QMainWindow):
         if self.video_slider.maximum() == 0:
             self.video_slider.setMaximum(self.video.max_frames)
         self.video_slider.setValue(frame_num)
-        self.label.setText(str(frame_num))
 
     def change_slider_value(self, new_frame_num):
         """Updates the frame number the video is playing when slider is moved
@@ -176,7 +174,7 @@ class MyGUI(QMainWindow):
         self.jet_width_label.setText(
             "Jet Width: " + self.scientific_notation(width * self.conversion_factor) + label)
         self.droplet_speed_label.setText(
-            "Droplet speed: " + self.scientific_notation(speed * self.conversion_factor) + label)
+            "Droplet speed: " + self.scientific_notation(speed * self.conversion_factor) + label + "/" + "s")
 
     def scientific_notation(self, number):
         num_str = str(number)
@@ -244,7 +242,7 @@ class MyGUI(QMainWindow):
         self.graphs.ax3.autoscale_view()
         self.graphs.ax4.autoscale_view()
 
-        self.graphs.draw()
+        self.graphs.draw_idle()
 
 # start application
 

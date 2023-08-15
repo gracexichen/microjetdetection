@@ -40,9 +40,10 @@ class Video(QThread):
         self.threshold = 0
 
     def preprocess(self, threshold):
+        prev_droplet_list = None
         vid = cv.VideoCapture(self.video_name)
         self.max_frames = int(vid.get(cv.CAP_PROP_FRAME_COUNT))
-        tracker = cv.TrackerCSRT_create()
+        # tracker = cv.TrackerCSRT_create()
         droplet_speed = 0
         temp = True
         while self.frame_number < self.max_frames:
@@ -52,16 +53,23 @@ class Video(QThread):
             self.video_status.emit(status)
             # print(status)
             _, f = vid.read()
-            frame = Frame(f, threshold)
-            cimg, radius, jet_width, jet_length = frame.detect_droplets_and_jet()
-            if Frame.is_tracker_initialized is False:
-                frame.init_tracker(tracker)
-                Frame.is_tracker_initialized = True
-            temp = frame.update_tracker(tracker, temp)
 
-            if temp and Frame.is_tracker_initialized:
-                droplet_speed = frame.calculate_droplet_speed()
-                Frame.prev_bbox = Frame.bbox
+            frame = Frame(f, threshold)
+            cimg, droplet_list, radius, jet_width, jet_length = frame.detect_droplets_and_jet()
+            if prev_droplet_list is not None:
+                droplet_speed = frame.calculate_droplet_speed(
+                    droplet_list, prev_droplet_list)
+
+            prev_droplet_list = droplet_list
+            # if Frame.is_tracker_initialized is False:
+            #     frame.init_tracker(tracker)
+            #     Frame.is_tracker_initialized = True
+            # temp = frame.update_tracker(tracker, temp)
+
+            # if temp and Frame.is_tracker_initialized:
+            #     droplet_speed = frame.calculate_droplet_speed()
+            #     Frame.prev_bbox = Frame.bbox
+
             self.information_array.append(
                 [f, cimg, radius, droplet_speed, jet_width, jet_length, self.frame_number])
         self.save_data()
@@ -108,7 +116,7 @@ class Video(QThread):
         # print(self.information_array)
         while self.ThreadActive:  # while the video isn't paused
             if not self.is_paused:
-                print(self.frame_number)
+                # print(self.frame_number)
                 if self.frame_number < len(self.information_array):
                     frame = self.information_array[self.frame_number][0]
                     cimg = self.information_array[self.frame_number][1]
@@ -144,7 +152,6 @@ class Video(QThread):
                     Graphs.speedData = []
 
     def chooseThreshold(self):
-        isChosen = False
         vid = cv.VideoCapture(self.video_name)
         _, initFrame = vid.read()
         converted_img = QImage(
@@ -158,12 +165,11 @@ class Video(QThread):
         if the video file exists, reinitialize all the variables and start the thread.
         if not, pause continue with setting the video as pause
         """
-        # self.is_paused = True
         filename = QFileDialog.getOpenFileName(
             None, 'Open file', 'c:\\', "Video files (*.avi *.mp4)")
         self.video_name = filename[0]
+        print(self.video_name)
         if self.video_name:
-            Frame.is_tracker_initialized = False
             self.frame_number = 0
             self.chooseThreshold()
 
@@ -176,4 +182,3 @@ class Video(QThread):
         """plays the video
         """
         self.is_paused = False
-        # self.run()
