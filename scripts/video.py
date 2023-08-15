@@ -61,14 +61,6 @@ class Video(QThread):
                     droplet_list, prev_droplet_list)
 
             prev_droplet_list = droplet_list
-            # if Frame.is_tracker_initialized is False:
-            #     frame.init_tracker(tracker)
-            #     Frame.is_tracker_initialized = True
-            # temp = frame.update_tracker(tracker, temp)
-
-            # if temp and Frame.is_tracker_initialized:
-            #     droplet_speed = frame.calculate_droplet_speed()
-            #     Frame.prev_bbox = Frame.bbox
 
             self.information_array.append(
                 [f, cimg, radius, droplet_speed, jet_width, jet_length, self.frame_number])
