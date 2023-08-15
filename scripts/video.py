@@ -103,12 +103,12 @@ class Video(QThread):
         continues reading each frame until it reaches the end of the video, then it loops
         for each frame, the droplet radius, droplet speed, droplet 
         """
-        self.ThreadActive = True
         self.preprocess(self.threshold)
-
+        self.ThreadActive = True
         self.frame_number = 0
         # print(self.information_array)
         while self.ThreadActive:  # while the video isn't paused
+            print(self.is_paused)
             if not self.is_paused:
                 # print(self.frame_number)
                 if self.frame_number < len(self.information_array):
