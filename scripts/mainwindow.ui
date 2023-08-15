@@ -51,7 +51,7 @@
        <number>5</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,0,2,1,2">
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,1,1,1,2">
         <property name="sizeConstraint">
          <enum>QLayout::SetDefaultConstraint</enum>
         </property>
@@ -241,7 +241,7 @@ border-radius: 4px;
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,2,2,2">
         <item>
          <widget class="QLabel" name="label">
           <property name="styleSheet">
@@ -250,6 +250,16 @@ border-radius: 4px;
           </property>
           <property name="text">
            <string>Threshold</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="frame_rate_input">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>Frame Rate (fps)</string>
           </property>
          </widget>
         </item>
@@ -485,98 +495,7 @@ QPushButton:hover
         <property name="spacing">
          <number>10</number>
         </property>
-        <item row="1" column="1">
-         <widget class="QLabel" name="jet_length_label">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>178</width>
-            <height>71</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Segoe UI Variable Display Semil</family>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background:rgb(188, 237, 255);
-border: 2px solid black;
-background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>Jet Length:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="droplet_speed_label">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>178</width>
-            <height>70</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Segoe UI Variable Display Semil</family>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background:rgb(188, 237, 255);
-border: 2px solid black;
-background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>Droplet Speed:</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
-         <widget class="QLabel" name="droplet_radius_label">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>178</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Segoe UI Variable Display Semil</family>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background:rgb(188, 237, 255);
-background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));
-border: 2px solid black;
-</string>
-          </property>
-          <property name="text">
-           <string>Droplet Radius:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
          <widget class="QLabel" name="jet_width_label">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -607,32 +526,95 @@ background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLineEdit" name="resolution_input">
-          <property name="text">
-           <string/>
+         <widget class="QLabel" name="droplet_radius_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="placeholderText">
-           <string>Resolution (m/px)</string>
+          <property name="minimumSize">
+           <size>
+            <width>178</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI Variable Display Semil</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:rgb(188, 237, 255);
+background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));
+border: 2px solid black;
+</string>
+          </property>
+          <property name="text">
+           <string>Droplet Radius:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="droplet_speed_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>178</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI Variable Display Semil</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:rgb(188, 237, 255);
+border: 2px solid black;
+background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));</string>
+          </property>
+          <property name="text">
+           <string>Droplet Speed:</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QPushButton" name="meters_button">
-            <property name="text">
-             <string>Units To Meters</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pixels_button">
-            <property name="text">
-             <string>Reset To Pixels</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QLabel" name="jet_length_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>178</width>
+            <height>71</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI Variable Display Semil</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:rgb(188, 237, 255);
+border: 2px solid black;
+background-color: qlineargradient(spread:repeat, x1:0, y1:1, x2:1, y2:1, stop:0.198864 rgba(160, 220, 255, 255), stop:0.693182 rgba(169, 242, 255, 255));</string>
+          </property>
+          <property name="text">
+           <string>Jet Length:</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
