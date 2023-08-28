@@ -1,0 +1,111 @@
+Help on module frame:
+
+NAME
+    frame - # imports
+
+CLASSES
+    builtins.object
+        Frame
+    
+    class Frame(builtins.object)
+     |  Frame(img, threshold)
+     |  
+     |  Frame class for each frame of the video
+     |  
+     |  static variables:
+     |  prev_bbox: previous bounding box of the droplet tracked to calculate the new position
+     |  bbox: bounding box of current position of the droplet being tracked
+     |  is_tracker_initialized: whether or not the tracker needs to be initialized
+     |  outline: whether or not to display the outline
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, img, threshold)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  calculate_droplet_speed(self, lists, prev_lists)
+     |  
+     |  detect_droplets_and_jet(self)
+     |      detects the droplets and jet and returns droplet radius, jet width and length
+     |      
+     |      finds all the contours of the image, finds the roundness and group as droplets or jet
+     |      
+     |      returns:
+     |      self.cimg: the image with outlines drawn on it (if outline is chosen)
+     |      radius_avg: the average radius of all the droplets in the frame
+     |      jet_width: the width of the jet
+     |      jet_length: the height of the jet
+     |  
+     |  detect_roundness(self, moment, cnt)
+     |      returns how round the detected contour is
+     |      
+     |      uses the equation roundness = 4*pi*area/perimeter^2
+     |      
+     |      args:
+     |      moment: the moment array for the contour of all the moments up to order 3
+     |      cnt: coordinates that form the contour
+     |      
+     |      return:
+     |      roundness: integer between 0 (not round) and 1 (circle) that displays roundness
+     |      area: the area of the contour
+     |      center_x: x coordinate of the contour center
+     |      center_y: y coordinate of the contour center
+     |  
+     |  droplet_rad(self, area, center_x, center_y, circles_num, radius_sum)
+     |      determines the radius of a droplet
+     |      
+     |      uses r = sqrt(A/pi) to find the radius.
+     |      updates radius total and total number of droplets.
+     |      
+     |      args:
+     |      area: area of the droplet
+     |      center_x: x coordinate of the contour center
+     |      center_y: y coordinate of the contour center
+     |      circles_num: total number of droplets
+     |      radius_num: sum of the radius
+     |      
+     |      returns:
+     |      circles_num: updated total number of droplets
+     |      radius_num: updated sum of radius
+     |  
+     |  jet_width_length(self, cnt)
+     |      returns the jet width and length
+     |      
+     |      find the height, the different between max and min values.
+     |      find width by finding the difference between the means of the x values' array split in half
+     |      
+     |      args:
+     |      cnt: the contour of the jet
+     |      
+     |      returns:
+     |      jet_width: the width of the jet
+     |      jet_length: the height of the jet
+     |  
+     |  process_image(self, threshold)
+     |      process the image by adding changing it to grayscale, adding blur, and thresholding the image
+     |      
+     |      returns:
+     |      thresh1: a thresholded image after processing
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  frame_rate = 0
+     |  
+     |  outline = True
+     |  
+     |  threshold = 0
+
+FILE
+    c:\users\grace\documents\all programming\lcs internship 2023 (github)\microjetdetection\scripts\frame.py
+
+

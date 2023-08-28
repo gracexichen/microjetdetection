@@ -1,0 +1,698 @@
+Help on module video:
+
+NAME
+    video - # imports
+
+CLASSES
+    PyQt5.QtCore.QThread(PyQt5.QtCore.QObject)
+        Video
+    
+    class Video(PyQt5.QtCore.QThread)
+     |  Video class extended from QThread
+     |  
+     |  static variables:
+     |  image_update: image of new frame sent as signal to main UI window
+     |  info_update: radius and speed of the droplets, length and width of jet sent as signal
+     |  graph_update: same info as info_update but includes frame number sent as signal
+     |  slider_update: sends frame number to update slider for the video
+     |  is_paused: whether or not the video is paused
+     |  
+     |  Method resolution order:
+     |      Video
+     |      PyQt5.QtCore.QThread
+     |      PyQt5.QtCore.QObject
+     |      sip.wrapper
+     |      sip.simplewrapper
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  chooseThreshold(self)
+     |  
+     |  graph_update = <unbound PYQT_SIGNAL graph_update(int,int,int,int,int)>
+     |  image_update = <unbound PYQT_SIGNAL image_update(QImage)>
+     |  info_update = <unbound PYQT_SIGNAL info_update(int,int,int,int)>
+     |  pause(self)
+     |      pauses the video
+     |  
+     |  play(self)
+     |      plays the video
+     |  
+     |  preprocess(self, threshold)
+     |  
+     |  run(self)
+     |      updates the video each frame and also updates related graphs and data labels
+     |      
+     |      continues reading each frame until it reaches the end of the video, then it loops
+     |      for each frame, the droplet radius, droplet speed, droplet
+     |  
+     |  save_data(self)
+     |      save datas into xls file
+     |      
+     |      args:
+     |      moment: the moment array for the contour of all the moments up to order 3
+     |      cnt: coordinates that form the contour
+     |      
+     |      return:
+     |      roundness: integer between 0 (not round) and 1 (circle) that displays roundness
+     |      area: the area of the contour
+     |      center_x: x coordinate of the contour center
+     |      center_y: y coordinate of the contour center
+     |  
+     |  slider_update = <unbound PYQT_SIGNAL slider_update(int)>
+     |  threshold_image_update = <unbound PYQT_SIGNAL threshold_image_update(PyQt_PyObject,QImage)>
+     |  upload(self)
+     |      prompts user to upload the a video file
+     |      
+     |      if the video file exists, reinitialize all the variables and start the thread.
+     |      if not, pause continue with setting the video as pause
+     |  
+     |  video_status = <unbound PYQT_SIGNAL video_status(QString)>
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from PyQt5.QtCore.QThread:
+     |  
+     |  childEvent(...)
+     |  
+     |  connectNotify(...)
+     |  
+     |  currentThread(...)
+     |      currentThread() -> QThread
+     |  
+     |  currentThreadId(...)
+     |      currentThreadId() -> PyQt5.sip.voidptr
+     |  
+     |  customEvent(...)
+     |  
+     |  disconnectNotify(...)
+     |  
+     |  event(...)
+     |      event(self, event: QEvent) -> bool
+     |  
+     |  eventDispatcher(...)
+     |      eventDispatcher(self) -> QAbstractEventDispatcher
+     |  
+     |  exec(...)
+     |      exec(self) -> int
+     |  
+     |  exec_(...)
+     |      exec_(self) -> int
+     |  
+     |  exit(...)
+     |      exit(self, returnCode: int = 0)
+     |  
+     |  finished = <unbound PYQT_SIGNAL finished()>
+     |  idealThreadCount(...)
+     |      idealThreadCount() -> int
+     |  
+     |  isFinished(...)
+     |      isFinished(self) -> bool
+     |  
+     |  isInterruptionRequested(...)
+     |      isInterruptionRequested(self) -> bool
+     |  
+     |  isRunning(...)
+     |      isRunning(self) -> bool
+     |  
+     |  isSignalConnected(...)
+     |  
+     |  loopLevel(...)
+     |      loopLevel(self) -> int
+     |  
+     |  msleep(...)
+     |      msleep(a0: int)
+     |  
+     |  priority(...)
+     |      priority(self) -> QThread.Priority
+     |  
+     |  quit(...)
+     |      quit(self)
+     |  
+     |  receivers(...)
+     |  
+     |  requestInterruption(...)
+     |      requestInterruption(self)
+     |  
+     |  sender(...)
+     |  
+     |  senderSignalIndex(...)
+     |  
+     |  setEventDispatcher(...)
+     |      setEventDispatcher(self, eventDispatcher: QAbstractEventDispatcher)
+     |  
+     |  setPriority(...)
+     |      setPriority(self, priority: QThread.Priority)
+     |  
+     |  setStackSize(...)
+     |      setStackSize(self, stackSize: int)
+     |  
+     |  setTerminationEnabled(...)
+     |      setTerminationEnabled(enabled: bool = True)
+     |  
+     |  sleep(...)
+     |      sleep(a0: int)
+     |  
+     |  stackSize(...)
+     |      stackSize(self) -> int
+     |  
+     |  start(...)
+     |      start(self, priority: QThread.Priority = QThread.InheritPriority)
+     |  
+     |  started = <unbound PYQT_SIGNAL started()>
+     |  terminate(...)
+     |      terminate(self)
+     |  
+     |  timerEvent(...)
+     |  
+     |  usleep(...)
+     |      usleep(a0: int)
+     |  
+     |  wait(...)
+     |      wait(self, msecs: int = ULONG_MAX) -> bool
+     |      wait(self, deadline: QDeadlineTimer) -> bool
+     |  
+     |  yieldCurrentThread(...)
+     |      yieldCurrentThread()
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from PyQt5.QtCore.QThread:
+     |  
+     |  HighPriority = 4
+     |  
+     |  HighestPriority = 5
+     |  
+     |  IdlePriority = 0
+     |  
+     |  InheritPriority = 7
+     |  
+     |  LowPriority = 2
+     |  
+     |  LowestPriority = 1
+     |  
+     |  NormalPriority = 3
+     |  
+     |  Priority = <class 'PyQt5.QtCore.QThread.Priority'>
+     |      int([x]) -> integer
+     |      int(x, base=10) -> integer
+     |      
+     |      Convert a number or string to an integer, or return 0 if no arguments
+     |      are given.  If x is a number, return x.__int__().  For floating point
+     |      numbers, this truncates towards zero.
+     |      
+     |      If x is not a number or if base is given, then x must be a string,
+     |      bytes, or bytearray instance representing an integer literal in the
+     |      given base.  The literal can be preceded by '+' or '-' and be surrounded
+     |      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+     |      Base 0 means to interpret the base from the string as an integer literal.
+     |      >>> int('0b100', base=0)
+     |      4
+     |  
+     |  TimeCriticalPriority = 6
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from PyQt5.QtCore.QObject:
+     |  
+     |  __getattr__(...)
+     |      __getattr__(self, name: str) -> object
+     |  
+     |  blockSignals(...)
+     |      blockSignals(self, b: bool) -> bool
+     |  
+     |  children(...)
+     |      children(self) -> List[QObject]
+     |  
+     |  deleteLater(...)
+     |      deleteLater(self)
+     |  
+     |  destroyed = <unbound PYQT_SIGNAL destroyed(QObject*)>
+     |  disconnect(...)
+     |      disconnect(a0: QMetaObject.Connection) -> bool
+     |      disconnect(self)
+     |  
+     |  dumpObjectInfo(...)
+     |      dumpObjectInfo(self)
+     |  
+     |  dumpObjectTree(...)
+     |      dumpObjectTree(self)
+     |  
+     |  dynamicPropertyNames(...)
+     |      dynamicPropertyNames(self) -> List[QByteArray]
+     |  
+     |  eventFilter(...)
+     |      eventFilter(self, a0: QObject, a1: QEvent) -> bool
+     |  
+     |  findChild(...)
+     |      findChild(self, type: type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+     |      findChild(self, types: Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+     |  
+     |  findChildren(...)
+     |      findChildren(self, type: type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, type: type, regExp: QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, regExp: QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, type: type, re: QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, re: QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |  
+     |  inherits(...)
+     |      inherits(self, classname: str) -> bool
+     |  
+     |  installEventFilter(...)
+     |      installEventFilter(self, a0: QObject)
+     |  
+     |  isWidgetType(...)
+     |      isWidgetType(self) -> bool
+     |  
+     |  isWindowType(...)
+     |      isWindowType(self) -> bool
+     |  
+     |  killTimer(...)
+     |      killTimer(self, id: int)
+     |  
+     |  metaObject(...)
+     |      metaObject(self) -> QMetaObject
+     |  
+     |  moveToThread(...)
+     |      moveToThread(self, thread: QThread)
+     |  
+     |  objectName(...)
+     |      objectName(self) -> str
+     |  
+     |  objectNameChanged = <unbound PYQT_SIGNAL objectNameChanged(QString)>
+     |  parent(...)
+     |      parent(self) -> QObject
+     |  
+     |  property(...)
+     |      property(self, name: str) -> Any
+     |  
+     |  pyqtConfigure(...)
+     |      QObject.pyqtConfigure(...)
+     |      
+     |      Each keyword argument is either the name of a Qt property or a Qt signal.
+     |      For properties the property is set to the given value which should be of an
+     |      appropriate type.
+     |      For signals the signal is connected to the given value which should be a
+     |      callable.
+     |  
+     |  removeEventFilter(...)
+     |      removeEventFilter(self, a0: QObject)
+     |  
+     |  setObjectName(...)
+     |      setObjectName(self, name: str)
+     |  
+     |  setParent(...)
+     |      setParent(self, a0: QObject)
+     |  
+     |  setProperty(...)
+     |      setProperty(self, name: str, value: Any) -> bool
+     |  
+     |  signalsBlocked(...)
+     |      signalsBlocked(self) -> bool
+     |  
+     |  startTimer(...)
+     |      startTimer(self, interval: int, timerType: Qt.TimerType = Qt.CoarseTimer) -> int
+     |  
+     |  thread(...)
+     |      thread(self) -> QThread
+     |  
+     |  tr(...)
+     |      tr(self, sourceText: str, disambiguation: typing.Optional[str] = None, n: int = -1) -> str
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from PyQt5.QtCore.QObject:
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from PyQt5.QtCore.QObject:
+     |  
+     |  staticMetaObject = <PyQt5.QtCore.QMetaObject object>
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods inherited from sip.simplewrapper:
+     |  
+     |  __new__(*args, **kwargs) from sip.wrappertype
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from sip.simplewrapper:
+     |  
+     |  __dict__
+
+FUNCTIONS
+    QT_TRANSLATE_NOOP(...)
+        QT_TRANSLATE_NOOP(a0: str, a1: str) -> str
+    
+    QT_TR_NOOP(...)
+        QT_TR_NOOP(a0: str) -> str
+    
+    QT_TR_NOOP_UTF8(...)
+        QT_TR_NOOP_UTF8(a0: str) -> str
+    
+    Q_ARG(...)
+        Q_ARG(type: object, data: object) -> QGenericArgument
+    
+    Q_CLASSINFO(...)
+        Q_CLASSINFO(name: str, value: str)
+    
+    Q_ENUM(...)
+        Q_ENUM(a0: Union[type, enum.Enum])
+    
+    Q_ENUMS(...)
+        Q_ENUMS(*a0)
+    
+    Q_FLAG(...)
+        Q_FLAG(a0: Union[type, enum.Enum])
+    
+    Q_FLAGS(...)
+        Q_FLAGS(*a0)
+    
+    Q_RETURN_ARG(...)
+        Q_RETURN_ARG(type: object) -> QGenericReturnArgument
+    
+    bin_(...)
+        bin_(s: QTextStream) -> QTextStream
+    
+    bom(...)
+        bom(s: QTextStream) -> QTextStream
+    
+    center(...)
+        center(s: QTextStream) -> QTextStream
+    
+    dec(...)
+        dec(s: QTextStream) -> QTextStream
+    
+    endl(...)
+        endl(s: QTextStream) -> QTextStream
+    
+    fixed(...)
+        fixed(s: QTextStream) -> QTextStream
+    
+    flush(...)
+        flush(s: QTextStream) -> QTextStream
+    
+    forcepoint(...)
+        forcepoint(s: QTextStream) -> QTextStream
+    
+    forcesign(...)
+        forcesign(s: QTextStream) -> QTextStream
+    
+    hex_(...)
+        hex_(s: QTextStream) -> QTextStream
+    
+    left(...)
+        left(s: QTextStream) -> QTextStream
+    
+    lowercasebase(...)
+        lowercasebase(s: QTextStream) -> QTextStream
+    
+    lowercasedigits(...)
+        lowercasedigits(s: QTextStream) -> QTextStream
+    
+    noforcepoint(...)
+        noforcepoint(s: QTextStream) -> QTextStream
+    
+    noforcesign(...)
+        noforcesign(s: QTextStream) -> QTextStream
+    
+    noshowbase(...)
+        noshowbase(s: QTextStream) -> QTextStream
+    
+    oct_(...)
+        oct_(s: QTextStream) -> QTextStream
+    
+    pyqtPickleProtocol(...)
+        pyqtPickleProtocol() -> Optional[int]
+    
+    pyqtRemoveInputHook(...)
+        pyqtRemoveInputHook()
+    
+    pyqtRestoreInputHook(...)
+        pyqtRestoreInputHook()
+    
+    pyqtSetPickleProtocol(...)
+        pyqtSetPickleProtocol(a0: Optional[int])
+    
+    pyqtSlot(...)
+        @pyqtSlot(*types, name: Optional[str], result: Optional[str])
+        
+        This is a decorator applied to Python methods of a QObject that marks them
+        as Qt slots.
+        The non-keyword arguments are the types of the slot arguments and each may
+        be a Python type object or a string specifying a C++ type.
+        name is the name of the slot and defaults to the name of the method.
+        result is type of the value returned by the slot.
+    
+    qAbs(...)
+        qAbs(t: float) -> float
+    
+    qAddPostRoutine(...)
+        qAddPostRoutine(a0: Callable[..., None])
+    
+    qAddPreRoutine(...)
+        qAddPreRoutine(routine: Callable[[], None])
+    
+    qAlpha(...)
+        qAlpha(rgb: QRgba64) -> int
+        qAlpha(rgb: int) -> int
+    
+    qBlue(...)
+        qBlue(rgb: QRgba64) -> int
+        qBlue(rgb: int) -> int
+    
+    qChecksum(...)
+        qChecksum(s: PyQt5.sip.array[bytes]) -> int
+        qChecksum(s: PyQt5.sip.array[bytes], standard: Qt.ChecksumType) -> int
+    
+    qCompress(...)
+        qCompress(data: Union[QByteArray, bytes, bytearray], compressionLevel: int = -1) -> QByteArray
+    
+    qCritical(...)
+        qCritical(msg: str)
+    
+    qDebug(...)
+        qDebug(msg: str)
+    
+    qDrawBorderPixmap(...)
+        qDrawBorderPixmap(painter: QPainter, target: QRect, margins: QMargins, pixmap: QPixmap)
+    
+    qDrawPlainRect(...)
+        qDrawPlainRect(p: QPainter, x: int, y: int, w: int, h: int, a5: Union[QColor, Qt.GlobalColor], lineWidth: int = 1, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+        qDrawPlainRect(p: QPainter, r: QRect, a2: Union[QColor, Qt.GlobalColor, QGradient], lineWidth: int = 1, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+    
+    qDrawShadeLine(...)
+        qDrawShadeLine(p: QPainter, x1: int, y1: int, x2: int, y2: int, pal: QPalette, sunken: bool = True, lineWidth: int = 1, midLineWidth: int = 0)
+        qDrawShadeLine(p: QPainter, p1: QPoint, p2: QPoint, pal: QPalette, sunken: bool = True, lineWidth: int = 1, midLineWidth: int = 0)
+    
+    qDrawShadePanel(...)
+        qDrawShadePanel(p: QPainter, x: int, y: int, w: int, h: int, pal: QPalette, sunken: bool = False, lineWidth: int = 1, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+        qDrawShadePanel(p: QPainter, r: QRect, pal: QPalette, sunken: bool = False, lineWidth: int = 1, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+    
+    qDrawShadeRect(...)
+        qDrawShadeRect(p: QPainter, x: int, y: int, w: int, h: int, pal: QPalette, sunken: bool = False, lineWidth: int = 1, midLineWidth: int = 0, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+        qDrawShadeRect(p: QPainter, r: QRect, pal: QPalette, sunken: bool = False, lineWidth: int = 1, midLineWidth: int = 0, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+    
+    qDrawWinButton(...)
+        qDrawWinButton(p: QPainter, x: int, y: int, w: int, h: int, pal: QPalette, sunken: bool = False, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+        qDrawWinButton(p: QPainter, r: QRect, pal: QPalette, sunken: bool = False, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+    
+    qDrawWinPanel(...)
+        qDrawWinPanel(p: QPainter, x: int, y: int, w: int, h: int, pal: QPalette, sunken: bool = False, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+        qDrawWinPanel(p: QPainter, r: QRect, pal: QPalette, sunken: bool = False, fill: typing.Optional[Union[QBrush, QColor, Qt.GlobalColor, QGradient]] = None)
+    
+    qEnvironmentVariable(...)
+        qEnvironmentVariable(varName: str) -> str
+        qEnvironmentVariable(varName: str, defaultValue: str) -> str
+    
+    qErrnoWarning(...)
+        qErrnoWarning(code: int, msg: str)
+        qErrnoWarning(msg: str)
+    
+    qFatal(...)
+        qFatal(msg: str)
+    
+    qFloatDistance(...)
+        qFloatDistance(a: float, b: float) -> int
+    
+    qFormatLogMessage(...)
+        qFormatLogMessage(type: QtMsgType, context: QMessageLogContext, buf: str) -> str
+    
+    qFuzzyCompare(...)
+        qFuzzyCompare(m1: QMatrix4x4, m2: QMatrix4x4) -> bool
+        qFuzzyCompare(q1: QQuaternion, q2: QQuaternion) -> bool
+        qFuzzyCompare(t1: QTransform, t2: QTransform) -> bool
+        qFuzzyCompare(v1: QVector2D, v2: QVector2D) -> bool
+        qFuzzyCompare(v1: QVector3D, v2: QVector3D) -> bool
+        qFuzzyCompare(v1: QVector4D, v2: QVector4D) -> bool
+    
+    qGray(...)
+        qGray(r: int, g: int, b: int) -> int
+        qGray(rgb: int) -> int
+    
+    qGreen(...)
+        qGreen(rgb: QRgba64) -> int
+        qGreen(rgb: int) -> int
+    
+    qInf(...)
+        qInf() -> float
+    
+    qInfo(...)
+        qInfo(msg: str)
+    
+    qInstallMessageHandler(...)
+        qInstallMessageHandler(a0: Optional[Callable[[QtMsgType, QMessageLogContext, str], None]]) -> Optional[Callable[[QtMsgType, QMessageLogContext, str], None]]
+    
+    qIsFinite(...)
+        qIsFinite(d: float) -> bool
+    
+    qIsGray(...)
+        qIsGray(rgb: int) -> bool
+    
+    qIsInf(...)
+        qIsInf(d: float) -> bool
+    
+    qIsNaN(...)
+        qIsNaN(d: float) -> bool
+    
+    qIsNull(...)
+        qIsNull(d: float) -> bool
+    
+    qPixelFormatAlpha(...)
+        qPixelFormatAlpha(channelSize: int, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.UnsignedInteger) -> QPixelFormat
+    
+    qPixelFormatCmyk(...)
+        qPixelFormatCmyk(channelSize: int, alphaSize: int = 0, alphaUsage: QPixelFormat.AlphaUsage = QPixelFormat.IgnoresAlpha, alphaPosition: QPixelFormat.AlphaPosition = QPixelFormat.AtBeginning, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.UnsignedInteger) -> QPixelFormat
+    
+    qPixelFormatGrayscale(...)
+        qPixelFormatGrayscale(channelSize: int, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.UnsignedInteger) -> QPixelFormat
+    
+    qPixelFormatHsl(...)
+        qPixelFormatHsl(channelSize: int, alphaSize: int = 0, alphaUsage: QPixelFormat.AlphaUsage = QPixelFormat.IgnoresAlpha, alphaPosition: QPixelFormat.AlphaPosition = QPixelFormat.AtBeginning, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.FloatingPoint) -> QPixelFormat
+    
+    qPixelFormatHsv(...)
+        qPixelFormatHsv(channelSize: int, alphaSize: int = 0, alphaUsage: QPixelFormat.AlphaUsage = QPixelFormat.IgnoresAlpha, alphaPosition: QPixelFormat.AlphaPosition = QPixelFormat.AtBeginning, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.FloatingPoint) -> QPixelFormat
+    
+    qPixelFormatRgba(...)
+        qPixelFormatRgba(red: int, green: int, blue: int, alfa: int, usage: QPixelFormat.AlphaUsage, position: QPixelFormat.AlphaPosition, premultiplied: QPixelFormat.AlphaPremultiplied = QPixelFormat.NotPremultiplied, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.UnsignedInteger) -> QPixelFormat
+    
+    qPixelFormatYuv(...)
+        qPixelFormatYuv(layout: QPixelFormat.YUVLayout, alphaSize: int = 0, alphaUsage: QPixelFormat.AlphaUsage = QPixelFormat.IgnoresAlpha, alphaPosition: QPixelFormat.AlphaPosition = QPixelFormat.AtBeginning, premultiplied: QPixelFormat.AlphaPremultiplied = QPixelFormat.NotPremultiplied, typeInterpretation: QPixelFormat.TypeInterpretation = QPixelFormat.UnsignedByte, byteOrder: QPixelFormat.ByteOrder = QPixelFormat.LittleEndian) -> QPixelFormat
+    
+    qPremultiply(...)
+        qPremultiply(c: QRgba64) -> QRgba64
+        qPremultiply(x: int) -> int
+    
+    qQNaN(...)
+        qQNaN() -> float
+    
+    qRed(...)
+        qRed(rgb: QRgba64) -> int
+        qRed(rgb: int) -> int
+    
+    qRegisterResourceData(...)
+        qRegisterResourceData(a0: int, a1: bytes, a2: bytes, a3: bytes) -> bool
+    
+    qRemovePostRoutine(...)
+        qRemovePostRoutine(a0: Callable[..., None])
+    
+    qRgb(...)
+        qRgb(r: int, g: int, b: int) -> int
+    
+    qRgba(...)
+        qRgba(r: int, g: int, b: int, a: int) -> int
+    
+    qRgba64(...)
+        qRgba64(r: int, g: int, b: int, a: int) -> QRgba64
+        qRgba64(c: int) -> QRgba64
+    
+    qRound(...)
+        qRound(d: float) -> int
+    
+    qRound64(...)
+        qRound64(d: float) -> int
+    
+    qSNaN(...)
+        qSNaN() -> float
+    
+    qSetFieldWidth(...)
+        qSetFieldWidth(width: int) -> QTextStreamManipulator
+    
+    qSetMessagePattern(...)
+        qSetMessagePattern(messagePattern: str)
+    
+    qSetPadChar(...)
+        qSetPadChar(ch: str) -> QTextStreamManipulator
+    
+    qSetRealNumberPrecision(...)
+        qSetRealNumberPrecision(precision: int) -> QTextStreamManipulator
+    
+    qSharedBuild(...)
+        qSharedBuild() -> bool
+    
+    qUncompress(...)
+        qUncompress(data: Union[QByteArray, bytes, bytearray]) -> QByteArray
+    
+    qUnpremultiply(...)
+        qUnpremultiply(c: QRgba64) -> QRgba64
+        qUnpremultiply(p: int) -> int
+    
+    qUnregisterResourceData(...)
+        qUnregisterResourceData(a0: int, a1: bytes, a2: bytes, a3: bytes) -> bool
+    
+    qVersion(...)
+        qVersion() -> str
+    
+    qWarning(...)
+        qWarning(msg: str)
+    
+    qrand(...)
+        qrand() -> int
+    
+    qsrand(...)
+        qsrand(seed: int)
+    
+    qt_set_sequence_auto_mnemonic(...)
+        qt_set_sequence_auto_mnemonic(b: bool)
+    
+    reset(...)
+        reset(s: QTextStream) -> QTextStream
+    
+    right(...)
+        right(s: QTextStream) -> QTextStream
+    
+    scientific(...)
+        scientific(s: QTextStream) -> QTextStream
+    
+    showbase(...)
+        showbase(s: QTextStream) -> QTextStream
+    
+    uppercasebase(...)
+        uppercasebase(s: QTextStream) -> QTextStream
+    
+    uppercasedigits(...)
+        uppercasedigits(s: QTextStream) -> QTextStream
+    
+    ws(...)
+        ws(s: QTextStream) -> QTextStream
+
+DATA
+    PYQT_CONFIGURATION = {'sip_flags': '-n PyQt5.sip -t Qt_5_15_2 -t WS_WI...
+    PYQT_VERSION = 331529
+    PYQT_VERSION_STR = '5.15.9'
+    QT_VERSION = 331522
+    QT_VERSION_STR = '5.15.2'
+    QWIDGETSIZE_MAX = 16777215
+    QtCriticalMsg = 2
+    QtDebugMsg = 0
+    QtFatalMsg = 3
+    QtInfoMsg = 4
+    QtSystemMsg = 2
+    QtWarningMsg = 1
+    qApp = <PyQt5.QtWidgets.QApplication object>
+
+FILE
+    c:\users\grace\documents\all programming\lcs internship 2023 (github)\microjetdetection\scripts\video.py
+
+

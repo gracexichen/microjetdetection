@@ -1,0 +1,126 @@
+Help on module main:
+
+NAME
+    main - Main File
+
+CLASSES
+    PyQt5.QtWidgets.QMainWindow(PyQt5.QtWidgets.QWidget)
+        MyGUI
+    
+    class MyGUI(PyQt5.QtWidgets.QMainWindow)
+     |  Main UI window extended from QMainWindow
+     |  
+     |  Main UI window for the application. Contains all the widgets and processes any input
+     |  
+     |  Method resolution order:
+     |      MyGUI
+     |      PyQt5.QtWidgets.QMainWindow
+     |      PyQt5.QtWidgets.QWidget
+     |      PyQt5.QtCore.QObject
+     |      sip.wrapper
+     |      PyQt5.QtGui.QPaintDevice
+     |      sip.simplewrapper
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  change_slider_value(self, new_frame_num)
+     |      Updates the frame number the video is playing when slider is moved
+     |      
+     |      Sets frame number of video to the new frame number the scroll bar is moved to
+     |      
+     |      Args:
+     |      new_frame_num: frame number to set the video to
+     |  
+     |  image_update_slot(self, new_img)
+     |      Updates the image displayed for the video with new image (next frame)
+     |      
+     |      Args:
+     |      new_img: new frame of the video
+     |  
+     |  pause_play_video(self)
+     |      Toggles video between pause and play, adapts the text as well
+     |  
+     |  scientific_notation(self, number)
+     |  
+     |  set_outline(self)
+     |      Toggles whether the detection outline of the jet and droplets should be displayed on the image
+     |  
+     |  show_settings(self)
+     |      Toggles between showing and hiding the settings when the setting button is pressed
+     |  
+     |  speed_change(self, multiplier)
+     |      Changes speed the video is played
+     |      
+     |      Sets the speed to the value of the slider after being moved multiplied by 100
+     |      
+     |      Args:
+     |      multiplier: the value of the scrollbar
+     |  
+     |  start_video(self)
+     |  
+     |  threshold_update_image(self, unconverted_img, new_img)
+     |  
+     |  update_graph(self, radius, length, width, speed, frame)
+     |      Update the graph with the new data for the frame
+     |      
+     |      Clears the current graph and adds data to array
+     |      If the arrays containing the properties exceeds 10 values, remove the value fron the front
+     |      Plots data and also rescales axis
+     |      
+     |      Args:
+     |      radius: average radius of the droplets
+     |      length: length of the jet
+     |      width: width of the jet
+     |      speed: speed of the droplets
+     |      frame: the frame number video is on
+     |  
+     |  update_info(self, radius, length, width, speed)
+     |      Update the labels for each properties with new data for new frame
+     |      
+     |      Args:
+     |      radius: average radius of the droplets
+     |      length: length of the jet
+     |      width: width of the jet
+     |      speed: speed of the droplets
+     |  
+     |  update_slider(self, frame_num)
+     |      Updates the slider with the current frame number
+     |      
+     |      Called to update the slider with the progress of the video as it plays. If the frame number
+     |      reaches the maximum count of frames in the video, the scroll bar resets to 0 as is also the
+     |      video.
+     |      
+     |      Args:
+     |      frame_num: the frame number to update the slider to
+     |  
+     |  update_threshold_value(self, new_value)
+     |  
+     |  update_video_status(self, status)
+     |  
+     |  upload_video(self)
+     |      Prompts for file upload and plays video if loaded
+     |  
+
+DATA
+    PYQT_CONFIGURATION = {'sip_flags': '-n PyQt5.sip -t Qt_5_15_2 -t WS_WI...
+    PYQT_VERSION = 331529
+    PYQT_VERSION_STR = '5.15.9'
+    QT_VERSION = 331522
+    QT_VERSION_STR = '5.15.2'
+    QWIDGETSIZE_MAX = 16777215
+    QtCriticalMsg = 2
+    QtDebugMsg = 0
+    QtFatalMsg = 3
+    QtInfoMsg = 4
+    QtSystemMsg = 2
+    QtWarningMsg = 1
+    qApp = <PyQt5.QtWidgets.QApplication object>
+
+FILE
+    c:\users\grace\documents\all programming\lcs internship 2023 (github)\microjetdetection\scripts\main.py
+
+

@@ -1,0 +1,1759 @@
+Help on module graphs:
+
+NAME
+    graphs - # imports
+
+CLASSES
+    matplotlib.backends.backend_qtagg.FigureCanvasQTAgg(matplotlib.backends.backend_agg.FigureCanvasAgg, matplotlib.backends.backend_qt.FigureCanvasQT)
+        Graphs
+    
+    class Graphs(matplotlib.backends.backend_qtagg.FigureCanvasQTAgg)
+     |  Graphs(parent=None, width='512px', height='512px', dpi=100)
+     |  
+     |  Graphs class extended from FigureCanvas
+     |  
+     |  Graph displayed in the main UI window with four subplots for each property
+     |  Updated each frame with most recent 10 values for each property
+     |  
+     |  static variables:
+     |  frameData: array of most recent 10 frame numbers
+     |  radiusData: array of most recent 10 radius values
+     |  lengthData: array of most recent 10 length values
+     |  widthData: array of most recent 10 width values
+     |  speedData: array of most recent 10 speed values
+     |  
+     |  Method resolution order:
+     |      Graphs
+     |      matplotlib.backends.backend_qtagg.FigureCanvasQTAgg
+     |      matplotlib.backends.backend_agg.FigureCanvasAgg
+     |      matplotlib.backends.backend_qt.FigureCanvasQT
+     |      matplotlib.backend_bases.FigureCanvasBase
+     |      PyQt5.QtWidgets.QWidget
+     |      PyQt5.QtCore.QObject
+     |      sip.wrapper
+     |      PyQt5.QtGui.QPaintDevice
+     |      sip.simplewrapper
+     |      builtins.object
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, parent=None, width='512px', height='512px', dpi=100)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  frameData = []
+     |  
+     |  lengthData = []
+     |  
+     |  radiusData = []
+     |  
+     |  speedData = []
+     |  
+     |  widthData = []
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from matplotlib.backends.backend_qtagg.FigureCanvasQTAgg:
+     |  
+     |  paintEvent(self, event)
+     |      Copy the image from the Agg canvas to the qt.drawable.
+     |      
+     |      In Qt, all drawing should be done inside of here when a widget is
+     |      shown onscreen.
+     |  
+     |  print_figure(self, *args, **kwargs)
+     |      Render the figure to hardcopy. Set the figure patch face and edge
+     |      colors.  This is useful because some of the GUIs have a gray figure
+     |      face color background and you'll probably want to override this on
+     |      hardcopy.
+     |      
+     |      Parameters
+     |      ----------
+     |      filename : str or path-like or file-like
+     |          The file where the figure is saved.
+     |      
+     |      dpi : float, default: :rc:`savefig.dpi`
+     |          The dots per inch to save the figure in.
+     |      
+     |      facecolor : color or 'auto', default: :rc:`savefig.facecolor`
+     |          The facecolor of the figure.  If 'auto', use the current figure
+     |          facecolor.
+     |      
+     |      edgecolor : color or 'auto', default: :rc:`savefig.edgecolor`
+     |          The edgecolor of the figure.  If 'auto', use the current figure
+     |          edgecolor.
+     |      
+     |      orientation : {'landscape', 'portrait'}, default: 'portrait'
+     |          Only currently applies to PostScript printing.
+     |      
+     |      format : str, optional
+     |          Force a specific file format. If not given, the format is inferred
+     |          from the *filename* extension, and if that fails from
+     |          :rc:`savefig.format`.
+     |      
+     |      bbox_inches : 'tight' or `.Bbox`, default: :rc:`savefig.bbox`
+     |          Bounding box in inches: only the given portion of the figure is
+     |          saved.  If 'tight', try to figure out the tight bbox of the figure.
+     |      
+     |      pad_inches : float, default: :rc:`savefig.pad_inches`
+     |          Amount of padding around the figure when *bbox_inches* is 'tight'.
+     |      
+     |      bbox_extra_artists : list of `~matplotlib.artist.Artist`, optional
+     |          A list of extra artists that will be considered when the
+     |          tight bbox is calculated.
+     |      
+     |      backend : str, optional
+     |          Use a non-default backend to render the file, e.g. to render a
+     |          png file with the "cairo" backend rather than the default "agg",
+     |          or a pdf file with the "pgf" backend rather than the default
+     |          "pdf".  Note that the default backend is normally sufficient.  See
+     |          :ref:`the-builtin-backends` for a list of valid backends for each
+     |          file format.  Custom backends can be referenced as "module://...".
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from matplotlib.backends.backend_agg.FigureCanvasAgg:
+     |  
+     |  buffer_rgba(self)
+     |      Get the image as a `memoryview` to the renderer's buffer.
+     |      
+     |      `draw` must be called at least once before this function will work and
+     |      to update the renderer for any subsequent changes to the Figure.
+     |  
+     |  copy_from_bbox(self, bbox)
+     |  
+     |  draw(self)
+     |      Render the `.Figure`.
+     |      
+     |      This method must walk the artist tree, even if no output is produced,
+     |      because it triggers deferred work that users may want to access
+     |      before saving output to disk. For example computing limits,
+     |      auto-limits, and tick values.
+     |  
+     |  get_renderer(self, cleared=<deprecated parameter>)
+     |  
+     |  print_jpeg = print_jpg(self, filename_or_obj, *, pil_kwargs=None)
+     |  
+     |  print_jpg(self, filename_or_obj, *, pil_kwargs=None)
+     |      Write the figure to a JPEG file.
+     |      
+     |      Parameters
+     |      ----------
+     |      filename_or_obj : str or path-like or file-like
+     |          The file to write to.
+     |      pil_kwargs : dict, optional
+     |          Additional keyword arguments that are passed to
+     |          `PIL.Image.Image.save` when saving the figure.
+     |  
+     |  print_png(self, filename_or_obj, *, metadata=None, pil_kwargs=None)
+     |      Write the figure to a PNG file.
+     |      
+     |      Parameters
+     |      ----------
+     |      filename_or_obj : str or path-like or file-like
+     |          The file to write to.
+     |      
+     |      metadata : dict, optional
+     |          Metadata in the PNG file as key-value pairs of bytes or latin-1
+     |          encodable strings.
+     |          According to the PNG specification, keys must be shorter than 79
+     |          chars.
+     |      
+     |          The `PNG specification`_ defines some common keywords that may be
+     |          used as appropriate:
+     |      
+     |          - Title: Short (one line) title or caption for image.
+     |          - Author: Name of image's creator.
+     |          - Description: Description of image (possibly long).
+     |          - Copyright: Copyright notice.
+     |          - Creation Time: Time of original image creation
+     |            (usually RFC 1123 format).
+     |          - Software: Software used to create the image.
+     |          - Disclaimer: Legal disclaimer.
+     |          - Warning: Warning of nature of content.
+     |          - Source: Device used to create the image.
+     |          - Comment: Miscellaneous comment;
+     |            conversion from other image format.
+     |      
+     |          Other keywords may be invented for other purposes.
+     |      
+     |          If 'Software' is not given, an autogenerated value for Matplotlib
+     |          will be used.  This can be removed by setting it to *None*.
+     |      
+     |          For more details see the `PNG specification`_.
+     |      
+     |          .. _PNG specification:                 https://www.w3.org/TR/2003/REC-PNG-20031110/#11keywords
+     |      
+     |      pil_kwargs : dict, optional
+     |          Keyword arguments passed to `PIL.Image.Image.save`.
+     |      
+     |          If the 'pnginfo' key is present, it completely overrides
+     |          *metadata*, including the default 'Software' key.
+     |  
+     |  print_raw(self, filename_or_obj)
+     |  
+     |  print_rgba = print_raw(self, filename_or_obj)
+     |  
+     |  print_tif(self, filename_or_obj, *, pil_kwargs=None)
+     |      Write the figure to a TIFF file.
+     |      
+     |      Parameters
+     |      ----------
+     |      filename_or_obj : str or path-like or file-like
+     |          The file to write to.
+     |      pil_kwargs : dict, optional
+     |          Additional keyword arguments that are passed to
+     |          `PIL.Image.Image.save` when saving the figure.
+     |  
+     |  print_tiff = print_tif(self, filename_or_obj, *, pil_kwargs=None)
+     |  
+     |  print_to_buffer(self)
+     |  
+     |  print_webp(self, filename_or_obj, *, pil_kwargs=None)
+     |      Write the figure to a WebP file.
+     |      
+     |      Parameters
+     |      ----------
+     |      filename_or_obj : str or path-like or file-like
+     |          The file to write to.
+     |      pil_kwargs : dict, optional
+     |          Additional keyword arguments that are passed to
+     |          `PIL.Image.Image.save` when saving the figure.
+     |  
+     |  restore_region(self, region, bbox=None, xy=None)
+     |  
+     |  tostring_argb(self)
+     |      Get the image as ARGB `bytes`.
+     |      
+     |      `draw` must be called at least once before this function will work and
+     |      to update the renderer for any subsequent changes to the Figure.
+     |  
+     |  tostring_rgb(self)
+     |      Get the image as RGB `bytes`.
+     |      
+     |      `draw` must be called at least once before this function will work and
+     |      to update the renderer for any subsequent changes to the Figure.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from matplotlib.backends.backend_qt.FigureCanvasQT:
+     |  
+     |  blit(self, bbox=None)
+     |      Blit the canvas in bbox (default entire canvas).
+     |  
+     |  drawRectangle(self, rect)
+     |  
+     |  draw_idle(self)
+     |      Queue redraw of the Agg buffer and request Qt paintEvent.
+     |  
+     |  enterEvent(self, event)
+     |      enterEvent(self, a0: QEvent)
+     |  
+     |  flush_events(self)
+     |      Flush the GUI events for the figure.
+     |      
+     |      Interactive backends need to reimplement this method.
+     |  
+     |  keyPressEvent(self, event)
+     |      keyPressEvent(self, a0: QKeyEvent)
+     |  
+     |  keyReleaseEvent(self, event)
+     |      keyReleaseEvent(self, a0: QKeyEvent)
+     |  
+     |  leaveEvent(self, event)
+     |      leaveEvent(self, a0: QEvent)
+     |  
+     |  minumumSizeHint(self)
+     |  
+     |  mouseDoubleClickEvent(self, event)
+     |      mouseDoubleClickEvent(self, a0: QMouseEvent)
+     |  
+     |  mouseEventCoords(self, pos=None)
+     |      Calculate mouse coordinates in physical pixels.
+     |      
+     |      Qt uses logical pixels, but the figure is scaled to physical
+     |      pixels for rendering.  Transform to physical pixels so that
+     |      all of the down-stream transforms work as expected.
+     |      
+     |      Also, the origin is different and needs to be corrected.
+     |  
+     |  mouseMoveEvent(self, event)
+     |      mouseMoveEvent(self, a0: QMouseEvent)
+     |  
+     |  mousePressEvent(self, event)
+     |      mousePressEvent(self, a0: QMouseEvent)
+     |  
+     |  mouseReleaseEvent(self, event)
+     |      mouseReleaseEvent(self, a0: QMouseEvent)
+     |  
+     |  resizeEvent(self, event)
+     |      resizeEvent(self, a0: QResizeEvent)
+     |  
+     |  set_cursor(self, cursor)
+     |      Set the current cursor.
+     |      
+     |      This may have no effect if the backend does not display anything.
+     |      
+     |      If required by the backend, this method should trigger an update in
+     |      the backend event loop after the cursor is set, as this method may be
+     |      called e.g. before a long-running task during which the GUI is not
+     |      updated.
+     |      
+     |      Parameters
+     |      ----------
+     |      cursor : `.Cursors`
+     |          The cursor to display over the canvas. Note: some backends may
+     |          change the cursor for the entire window.
+     |  
+     |  showEvent(self, event)
+     |      showEvent(self, a0: QShowEvent)
+     |  
+     |  sizeHint(self)
+     |      sizeHint(self) -> QSize
+     |  
+     |  start_event_loop(self, timeout=0)
+     |      Start a blocking event loop.
+     |      
+     |      Such an event loop is used by interactive functions, such as
+     |      `~.Figure.ginput` and `~.Figure.waitforbuttonpress`, to wait for
+     |      events.
+     |      
+     |      The event loop blocks until a callback function triggers
+     |      `stop_event_loop`, or *timeout* is reached.
+     |      
+     |      If *timeout* is 0 or negative, never timeout.
+     |      
+     |      Only interactive backends need to reimplement this method and it relies
+     |      on `flush_events` being properly implemented.
+     |      
+     |      Interactive backends should implement this in a more native way.
+     |  
+     |  stop_event_loop(self, event=None)
+     |      Stop the current blocking event loop.
+     |      
+     |      Interactive backends need to reimplement this to match
+     |      `start_event_loop`
+     |  
+     |  wheelEvent(self, event)
+     |      wheelEvent(self, a0: QWheelEvent)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from matplotlib.backends.backend_qt.FigureCanvasQT:
+     |  
+     |  buttond = {1: <MouseButton.LEFT: 1>, 2: <MouseButton.RIGHT: 3>, 4: <Mo...
+     |  
+     |  manager_class = <class 'matplotlib.backends.backend_qt.FigureManagerQT...
+     |      Attributes
+     |      ----------
+     |      canvas : `FigureCanvas`
+     |          The FigureCanvas instance
+     |      num : int or str
+     |          The Figure number
+     |      toolbar : qt.QToolBar
+     |          The qt.QToolBar
+     |      window : qt.QMainWindow
+     |          The qt.QMainWindow
+     |  
+     |  required_interactive_framework = 'qt'
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from matplotlib.backend_bases.FigureCanvasBase:
+     |  
+     |  button_press_event(self, x, y, button, dblclick=False, guiEvent=None)
+     |      [*Deprecated*] Callback processing for mouse button press events.
+     |      
+     |      Backend derived classes should call this function on any mouse
+     |      button press.  (*x*, *y*) are the canvas coords ((0, 0) is lower left).
+     |      button and key are as defined in `MouseEvent`.
+     |      
+     |      This method will call all functions connected to the
+     |      'button_press_event' with a `MouseEvent` instance.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('button_press_event', MouseEvent(...)) instead.
+     |  
+     |  button_release_event(self, x, y, button, guiEvent=None)
+     |      [*Deprecated*] Callback processing for mouse button release events.
+     |      
+     |      Backend derived classes should call this function on any mouse
+     |      button release.
+     |      
+     |      This method will call all functions connected to the
+     |      'button_release_event' with a `MouseEvent` instance.
+     |      
+     |      Parameters
+     |      ----------
+     |      x : float
+     |          The canvas coordinates where 0=left.
+     |      y : float
+     |          The canvas coordinates where 0=bottom.
+     |      guiEvent
+     |          The native UI event that generated the Matplotlib event.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('button_release_event', MouseEvent(...)) instead.
+     |  
+     |  close_event(self, guiEvent=None)
+     |      [*Deprecated*] Pass a `CloseEvent` to all functions connected to ``close_event``.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('close_event', CloseEvent(...)) instead.
+     |  
+     |  draw_event(self, renderer)
+     |      [*Deprecated*] Pass a `DrawEvent` to all functions connected to ``draw_event``.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('draw_event', DrawEvent(...)) instead.
+     |  
+     |  enter_notify_event(self, guiEvent=None, *, xy)
+     |      [*Deprecated*] Callback processing for the mouse cursor entering the canvas.
+     |      
+     |      Backend derived classes should call this function when entering
+     |      canvas.
+     |      
+     |      Parameters
+     |      ----------
+     |      guiEvent
+     |          The native UI event that generated the Matplotlib event.
+     |      xy : (float, float)
+     |          The coordinate location of the pointer when the canvas is entered.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('enter_notify_event', LocationEvent(...)) instead.
+     |  
+     |  get_default_filename(self)
+     |      Return a string, which includes extension, suitable for use as
+     |      a default filename.
+     |  
+     |  get_width_height(self, *, physical=False)
+     |      Return the figure width and height in integral points or pixels.
+     |      
+     |      When the figure is used on High DPI screens (and the backend supports
+     |      it), the truncation to integers occurs after scaling by the device
+     |      pixel ratio.
+     |      
+     |      Parameters
+     |      ----------
+     |      physical : bool, default: False
+     |          Whether to return true physical pixels or logical pixels. Physical
+     |          pixels may be used by backends that support HiDPI, but still
+     |          configure the canvas using its actual size.
+     |      
+     |      Returns
+     |      -------
+     |      width, height : int
+     |          The size of the figure, in points or pixels, depending on the
+     |          backend.
+     |  
+     |  grab_mouse(self, ax)
+     |      Set the child `~.axes.Axes` which is grabbing the mouse events.
+     |      
+     |      Usually called by the widgets themselves. It is an error to call this
+     |      if the mouse is already grabbed by another Axes.
+     |  
+     |  inaxes(self, xy)
+     |      Return the topmost visible `~.axes.Axes` containing the point *xy*.
+     |      
+     |      Parameters
+     |      ----------
+     |      xy : (float, float)
+     |          (x, y) pixel positions from left/bottom of the canvas.
+     |      
+     |      Returns
+     |      -------
+     |      `~matplotlib.axes.Axes` or None
+     |          The topmost visible Axes containing the point, or None if there
+     |          is no Axes at the point.
+     |  
+     |  is_saving(self)
+     |      Return whether the renderer is in the process of saving
+     |      to a file, rather than rendering for an on-screen buffer.
+     |  
+     |  key_press_event(self, key, guiEvent=None)
+     |      [*Deprecated*] Pass a `KeyEvent` to all functions connected to ``key_press_event``.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('key_press_event', KeyEvent(...)) instead.
+     |  
+     |  key_release_event(self, key, guiEvent=None)
+     |      [*Deprecated*] Pass a `KeyEvent` to all functions connected to ``key_release_event``.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('key_release_event', KeyEvent(...)) instead.
+     |  
+     |  leave_notify_event(self, guiEvent=None)
+     |      [*Deprecated*] Callback processing for the mouse cursor leaving the canvas.
+     |      
+     |      Backend derived classes should call this function when leaving
+     |      canvas.
+     |      
+     |      Parameters
+     |      ----------
+     |      guiEvent
+     |          The native UI event that generated the Matplotlib event.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('leave_notify_event', LocationEvent(...)) instead.
+     |  
+     |  motion_notify_event(self, x, y, guiEvent=None)
+     |      [*Deprecated*] Callback processing for mouse movement events.
+     |      
+     |      Backend derived classes should call this function on any
+     |      motion-notify-event.
+     |      
+     |      This method will call all functions connected to the
+     |      'motion_notify_event' with a `MouseEvent` instance.
+     |      
+     |      Parameters
+     |      ----------
+     |      x : float
+     |          The canvas coordinates where 0=left.
+     |      y : float
+     |          The canvas coordinates where 0=bottom.
+     |      guiEvent
+     |          The native UI event that generated the Matplotlib event.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('motion_notify_event', MouseEvent(...)) instead.
+     |  
+     |  mpl_connect(self, s, func)
+     |      Bind function *func* to event *s*.
+     |      
+     |      Parameters
+     |      ----------
+     |      s : str
+     |          One of the following events ids:
+     |      
+     |          - 'button_press_event'
+     |          - 'button_release_event'
+     |          - 'draw_event'
+     |          - 'key_press_event'
+     |          - 'key_release_event'
+     |          - 'motion_notify_event'
+     |          - 'pick_event'
+     |          - 'resize_event'
+     |          - 'scroll_event'
+     |          - 'figure_enter_event',
+     |          - 'figure_leave_event',
+     |          - 'axes_enter_event',
+     |          - 'axes_leave_event'
+     |          - 'close_event'.
+     |      
+     |      func : callable
+     |          The callback function to be executed, which must have the
+     |          signature::
+     |      
+     |              def func(event: Event) -> Any
+     |      
+     |          For the location events (button and key press/release), if the
+     |          mouse is over the Axes, the ``inaxes`` attribute of the event will
+     |          be set to the `~matplotlib.axes.Axes` the event occurs is over, and
+     |          additionally, the variables ``xdata`` and ``ydata`` attributes will
+     |          be set to the mouse location in data coordinates.  See `.KeyEvent`
+     |          and `.MouseEvent` for more info.
+     |      
+     |          .. note::
+     |      
+     |              If func is a method, this only stores a weak reference to the
+     |              method. Thus, the figure does not influence the lifetime of
+     |              the associated object. Usually, you want to make sure that the
+     |              object is kept alive throughout the lifetime of the figure by
+     |              holding a reference to it.
+     |      
+     |      Returns
+     |      -------
+     |      cid
+     |          A connection id that can be used with
+     |          `.FigureCanvasBase.mpl_disconnect`.
+     |      
+     |      Examples
+     |      --------
+     |      ::
+     |      
+     |          def on_press(event):
+     |              print('you pressed', event.button, event.xdata, event.ydata)
+     |      
+     |          cid = canvas.mpl_connect('button_press_event', on_press)
+     |  
+     |  mpl_disconnect(self, cid)
+     |      Disconnect the callback with id *cid*.
+     |      
+     |      Examples
+     |      --------
+     |      ::
+     |      
+     |          cid = canvas.mpl_connect('button_press_event', on_press)
+     |          # ... later
+     |          canvas.mpl_disconnect(cid)
+     |  
+     |  new_timer(self, interval=None, callbacks=None)
+     |      Create a new backend-specific subclass of `.Timer`.
+     |      
+     |      This is useful for getting periodic events through the backend's native
+     |      event loop.  Implemented only for backends with GUIs.
+     |      
+     |      Parameters
+     |      ----------
+     |      interval : int
+     |          Timer interval in milliseconds.
+     |      
+     |      callbacks : list[tuple[callable, tuple, dict]]
+     |          Sequence of (func, args, kwargs) where ``func(*args, **kwargs)``
+     |          will be executed by the timer every *interval*.
+     |      
+     |          Callbacks which return ``False`` or ``0`` will be removed from the
+     |          timer.
+     |      
+     |      Examples
+     |      --------
+     |      >>> timer = fig.canvas.new_timer(callbacks=[(f1, (1,), {'a': 3})])
+     |  
+     |  pick(self, mouseevent)
+     |      [*Deprecated*] 
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use canvas.figure.pick instead.\
+     |  
+     |  pick_event(self, mouseevent, artist, **kwargs)
+     |      [*Deprecated*] Callback processing for pick events.
+     |      
+     |      This method will be called by artists who are picked and will
+     |      fire off `PickEvent` callbacks registered listeners.
+     |      
+     |      Note that artists are not pickable by default (see
+     |      `.Artist.set_picker`).
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('pick_event', PickEvent(...)) instead.
+     |  
+     |  release_mouse(self, ax)
+     |      Release the mouse grab held by the `~.axes.Axes` *ax*.
+     |      
+     |      Usually called by the widgets. It is ok to call this even if *ax*
+     |      doesn't have the mouse grab currently.
+     |  
+     |  resize(self, w, h)
+     |      UNUSED: Set the canvas size in pixels.
+     |      
+     |      Certain backends may implement a similar method internally, but this is
+     |      not a requirement of, nor is it used by, Matplotlib itself.
+     |  
+     |  resize_event(self)
+     |      [*Deprecated*] Pass a `ResizeEvent` to all functions connected to ``resize_event``.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('resize_event', ResizeEvent(...)) instead.
+     |  
+     |  scroll_event(self, x, y, step, guiEvent=None)
+     |      [*Deprecated*] Callback processing for scroll events.
+     |      
+     |      Backend derived classes should call this function on any
+     |      scroll wheel event.  (*x*, *y*) are the canvas coords ((0, 0) is lower
+     |      left).  button and key are as defined in `MouseEvent`.
+     |      
+     |      This method will call all functions connected to the 'scroll_event'
+     |      with a `MouseEvent` instance.
+     |      
+     |      Notes
+     |      -----
+     |      .. deprecated:: 3.6
+     |         Use callbacks.process('scroll_event', MouseEvent(...)) instead.
+     |  
+     |  switch_backends(self, FigureCanvasClass)
+     |      Instantiate an instance of FigureCanvasClass
+     |      
+     |      This is used for backend switching, e.g., to instantiate a
+     |      FigureCanvasPS from a FigureCanvasGTK.  Note, deep copying is
+     |      not done, so any changes to one of the instances (e.g., setting
+     |      figure size or line props), will be reflected in the other
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods inherited from matplotlib.backend_bases.FigureCanvasBase:
+     |  
+     |  get_default_filetype() from sip.wrappertype
+     |      Return the default savefig file format as specified in
+     |      :rc:`savefig.format`.
+     |      
+     |      The returned string does not include a period. This method is
+     |      overridden in backends that only support a single file type.
+     |  
+     |  get_supported_filetypes() from sip.wrappertype
+     |      Return dict of savefig file formats supported by this backend.
+     |  
+     |  get_supported_filetypes_grouped() from sip.wrappertype
+     |      Return a dict of savefig file formats supported by this backend,
+     |      where the keys are a file type name, such as 'Joint Photographic
+     |      Experts Group', and the values are a list of filename extensions used
+     |      for that filetype, such as ['jpg', 'jpeg'].
+     |  
+     |  new_manager(figure, num) from sip.wrappertype
+     |      Create a new figure manager for *figure*, using this canvas class.
+     |      
+     |      Notes
+     |      -----
+     |      This method should not be reimplemented in subclasses.  If
+     |      custom manager creation logic is needed, please reimplement
+     |      ``FigureManager.create_with_canvas``.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Readonly properties inherited from matplotlib.backend_bases.FigureCanvasBase:
+     |  
+     |  button_pick_id
+     |  
+     |  callbacks
+     |  
+     |  device_pixel_ratio
+     |      The ratio of physical to logical pixels used for the canvas on screen.
+     |      
+     |      By default, this is 1, meaning physical and logical pixels are the same
+     |      size. Subclasses that support High DPI screens may set this property to
+     |      indicate that said ratio is different. All Matplotlib interaction,
+     |      unless working directly with the canvas, remains in logical pixels.
+     |  
+     |  scroll_pick_id
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from matplotlib.backend_bases.FigureCanvasBase:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from matplotlib.backend_bases.FigureCanvasBase:
+     |  
+     |  events = ['resize_event', 'draw_event', 'key_press_event', 'key_releas...
+     |  
+     |  filetypes = {'eps': 'Encapsulated Postscript', 'jpeg': 'Joint Photogra...
+     |  
+     |  fixed_dpi = None
+     |  
+     |  supports_blit = True
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from PyQt5.QtWidgets.QWidget:
+     |  
+     |  acceptDrops(...)
+     |      acceptDrops(self) -> bool
+     |  
+     |  accessibleDescription(...)
+     |      accessibleDescription(self) -> str
+     |  
+     |  accessibleName(...)
+     |      accessibleName(self) -> str
+     |  
+     |  actionEvent(...)
+     |      actionEvent(self, a0: QActionEvent)
+     |  
+     |  actions(...)
+     |      actions(self) -> List[QAction]
+     |  
+     |  activateWindow(...)
+     |      activateWindow(self)
+     |  
+     |  addAction(...)
+     |      addAction(self, action: QAction)
+     |  
+     |  addActions(...)
+     |      addActions(self, actions: Iterable[QAction])
+     |  
+     |  adjustSize(...)
+     |      adjustSize(self)
+     |  
+     |  autoFillBackground(...)
+     |      autoFillBackground(self) -> bool
+     |  
+     |  backgroundRole(...)
+     |      backgroundRole(self) -> QPalette.ColorRole
+     |  
+     |  baseSize(...)
+     |      baseSize(self) -> QSize
+     |  
+     |  changeEvent(...)
+     |      changeEvent(self, a0: QEvent)
+     |  
+     |  childAt(...)
+     |      childAt(self, p: QPoint) -> QWidget
+     |      childAt(self, ax: int, ay: int) -> QWidget
+     |  
+     |  childEvent(...)
+     |  
+     |  childrenRect(...)
+     |      childrenRect(self) -> QRect
+     |  
+     |  childrenRegion(...)
+     |      childrenRegion(self) -> QRegion
+     |  
+     |  clearFocus(...)
+     |      clearFocus(self)
+     |  
+     |  clearMask(...)
+     |      clearMask(self)
+     |  
+     |  close(...)
+     |      close(self) -> bool
+     |  
+     |  closeEvent(...)
+     |      closeEvent(self, a0: QCloseEvent)
+     |  
+     |  connectNotify(...)
+     |  
+     |  contentsMargins(...)
+     |      contentsMargins(self) -> QMargins
+     |  
+     |  contentsRect(...)
+     |      contentsRect(self) -> QRect
+     |  
+     |  contextMenuEvent(...)
+     |      contextMenuEvent(self, a0: QContextMenuEvent)
+     |  
+     |  contextMenuPolicy(...)
+     |      contextMenuPolicy(self) -> Qt.ContextMenuPolicy
+     |  
+     |  create(...)
+     |      create(self, window: PyQt5.sip.voidptr = 0, initializeWindow: bool = True, destroyOldWindow: bool = True)
+     |  
+     |  createWindowContainer(...)
+     |      createWindowContainer(window: QWindow, parent: typing.Optional[QWidget] = None, flags: Union[Qt.WindowFlags, Qt.WindowType] = 0) -> QWidget
+     |  
+     |  cursor(...)
+     |      cursor(self) -> QCursor
+     |  
+     |  customContextMenuRequested = <unbound PYQT_SIGNAL customContextMenuRequested(QPoint)>
+     |  customEvent(...)
+     |  
+     |  destroy(...)
+     |      destroy(self, destroyWindow: bool = True, destroySubWindows: bool = True)
+     |  
+     |  devType(...)
+     |      devType(self) -> int
+     |  
+     |  disconnectNotify(...)
+     |  
+     |  dragEnterEvent(...)
+     |      dragEnterEvent(self, a0: QDragEnterEvent)
+     |  
+     |  dragLeaveEvent(...)
+     |      dragLeaveEvent(self, a0: QDragLeaveEvent)
+     |  
+     |  dragMoveEvent(...)
+     |      dragMoveEvent(self, a0: QDragMoveEvent)
+     |  
+     |  dropEvent(...)
+     |      dropEvent(self, a0: QDropEvent)
+     |  
+     |  effectiveWinId(...)
+     |      effectiveWinId(self) -> PyQt5.sip.voidptr
+     |  
+     |  ensurePolished(...)
+     |      ensurePolished(self)
+     |  
+     |  event(...)
+     |      event(self, a0: QEvent) -> bool
+     |  
+     |  find(...)
+     |      find(a0: PyQt5.sip.voidptr) -> QWidget
+     |  
+     |  focusInEvent(...)
+     |      focusInEvent(self, a0: QFocusEvent)
+     |  
+     |  focusNextChild(...)
+     |      focusNextChild(self) -> bool
+     |  
+     |  focusNextPrevChild(...)
+     |      focusNextPrevChild(self, next: bool) -> bool
+     |  
+     |  focusOutEvent(...)
+     |      focusOutEvent(self, a0: QFocusEvent)
+     |  
+     |  focusPolicy(...)
+     |      focusPolicy(self) -> Qt.FocusPolicy
+     |  
+     |  focusPreviousChild(...)
+     |      focusPreviousChild(self) -> bool
+     |  
+     |  focusProxy(...)
+     |      focusProxy(self) -> QWidget
+     |  
+     |  focusWidget(...)
+     |      focusWidget(self) -> QWidget
+     |  
+     |  font(...)
+     |      font(self) -> QFont
+     |  
+     |  fontInfo(...)
+     |      fontInfo(self) -> QFontInfo
+     |  
+     |  fontMetrics(...)
+     |      fontMetrics(self) -> QFontMetrics
+     |  
+     |  foregroundRole(...)
+     |      foregroundRole(self) -> QPalette.ColorRole
+     |  
+     |  frameGeometry(...)
+     |      frameGeometry(self) -> QRect
+     |  
+     |  frameSize(...)
+     |      frameSize(self) -> QSize
+     |  
+     |  geometry(...)
+     |      geometry(self) -> QRect
+     |  
+     |  getContentsMargins(...)
+     |      getContentsMargins(self) -> Tuple[int, int, int, int]
+     |  
+     |  grab(...)
+     |      grab(self, rectangle: QRect = QRect(QPoint(0,0),QSize(-1,-1))) -> QPixmap
+     |  
+     |  grabGesture(...)
+     |      grabGesture(self, type: Qt.GestureType, flags: Union[Qt.GestureFlags, Qt.GestureFlag] = Qt.GestureFlags())
+     |  
+     |  grabKeyboard(...)
+     |      grabKeyboard(self)
+     |  
+     |  grabMouse(...)
+     |      grabMouse(self)
+     |      grabMouse(self, a0: Union[QCursor, Qt.CursorShape])
+     |  
+     |  grabShortcut(...)
+     |      grabShortcut(self, key: Union[QKeySequence, QKeySequence.StandardKey, str, int], context: Qt.ShortcutContext = Qt.WindowShortcut) -> int
+     |  
+     |  graphicsEffect(...)
+     |      graphicsEffect(self) -> QGraphicsEffect
+     |  
+     |  graphicsProxyWidget(...)
+     |      graphicsProxyWidget(self) -> QGraphicsProxyWidget
+     |  
+     |  hasFocus(...)
+     |      hasFocus(self) -> bool
+     |  
+     |  hasHeightForWidth(...)
+     |      hasHeightForWidth(self) -> bool
+     |  
+     |  hasMouseTracking(...)
+     |      hasMouseTracking(self) -> bool
+     |  
+     |  hasTabletTracking(...)
+     |      hasTabletTracking(self) -> bool
+     |  
+     |  height(...)
+     |      height(self) -> int
+     |  
+     |  heightForWidth(...)
+     |      heightForWidth(self, a0: int) -> int
+     |  
+     |  hide(...)
+     |      hide(self)
+     |  
+     |  hideEvent(...)
+     |      hideEvent(self, a0: QHideEvent)
+     |  
+     |  initPainter(...)
+     |      initPainter(self, painter: QPainter)
+     |  
+     |  inputMethodEvent(...)
+     |      inputMethodEvent(self, a0: QInputMethodEvent)
+     |  
+     |  inputMethodHints(...)
+     |      inputMethodHints(self) -> Qt.InputMethodHints
+     |  
+     |  inputMethodQuery(...)
+     |      inputMethodQuery(self, a0: Qt.InputMethodQuery) -> Any
+     |  
+     |  insertAction(...)
+     |      insertAction(self, before: QAction, action: QAction)
+     |  
+     |  insertActions(...)
+     |      insertActions(self, before: QAction, actions: Iterable[QAction])
+     |  
+     |  isActiveWindow(...)
+     |      isActiveWindow(self) -> bool
+     |  
+     |  isAncestorOf(...)
+     |      isAncestorOf(self, child: QWidget) -> bool
+     |  
+     |  isEnabled(...)
+     |      isEnabled(self) -> bool
+     |  
+     |  isEnabledTo(...)
+     |      isEnabledTo(self, a0: QWidget) -> bool
+     |  
+     |  isFullScreen(...)
+     |      isFullScreen(self) -> bool
+     |  
+     |  isHidden(...)
+     |      isHidden(self) -> bool
+     |  
+     |  isLeftToRight(...)
+     |      isLeftToRight(self) -> bool
+     |  
+     |  isMaximized(...)
+     |      isMaximized(self) -> bool
+     |  
+     |  isMinimized(...)
+     |      isMinimized(self) -> bool
+     |  
+     |  isModal(...)
+     |      isModal(self) -> bool
+     |  
+     |  isRightToLeft(...)
+     |      isRightToLeft(self) -> bool
+     |  
+     |  isSignalConnected(...)
+     |  
+     |  isVisible(...)
+     |      isVisible(self) -> bool
+     |  
+     |  isVisibleTo(...)
+     |      isVisibleTo(self, a0: QWidget) -> bool
+     |  
+     |  isWindow(...)
+     |      isWindow(self) -> bool
+     |  
+     |  isWindowModified(...)
+     |      isWindowModified(self) -> bool
+     |  
+     |  keyboardGrabber(...)
+     |      keyboardGrabber() -> QWidget
+     |  
+     |  layout(...)
+     |      layout(self) -> QLayout
+     |  
+     |  layoutDirection(...)
+     |      layoutDirection(self) -> Qt.LayoutDirection
+     |  
+     |  locale(...)
+     |      locale(self) -> QLocale
+     |  
+     |  lower(...)
+     |      lower(self)
+     |  
+     |  mapFrom(...)
+     |      mapFrom(self, a0: QWidget, a1: QPoint) -> QPoint
+     |  
+     |  mapFromGlobal(...)
+     |      mapFromGlobal(self, a0: QPoint) -> QPoint
+     |  
+     |  mapFromParent(...)
+     |      mapFromParent(self, a0: QPoint) -> QPoint
+     |  
+     |  mapTo(...)
+     |      mapTo(self, a0: QWidget, a1: QPoint) -> QPoint
+     |  
+     |  mapToGlobal(...)
+     |      mapToGlobal(self, a0: QPoint) -> QPoint
+     |  
+     |  mapToParent(...)
+     |      mapToParent(self, a0: QPoint) -> QPoint
+     |  
+     |  mask(...)
+     |      mask(self) -> QRegion
+     |  
+     |  maximumHeight(...)
+     |      maximumHeight(self) -> int
+     |  
+     |  maximumSize(...)
+     |      maximumSize(self) -> QSize
+     |  
+     |  maximumWidth(...)
+     |      maximumWidth(self) -> int
+     |  
+     |  metric(...)
+     |      metric(self, a0: QPaintDevice.PaintDeviceMetric) -> int
+     |  
+     |  minimumHeight(...)
+     |      minimumHeight(self) -> int
+     |  
+     |  minimumSize(...)
+     |      minimumSize(self) -> QSize
+     |  
+     |  minimumSizeHint(...)
+     |      minimumSizeHint(self) -> QSize
+     |  
+     |  minimumWidth(...)
+     |      minimumWidth(self) -> int
+     |  
+     |  mouseGrabber(...)
+     |      mouseGrabber() -> QWidget
+     |  
+     |  move(...)
+     |      move(self, a0: QPoint)
+     |      move(self, ax: int, ay: int)
+     |  
+     |  moveEvent(...)
+     |      moveEvent(self, a0: QMoveEvent)
+     |  
+     |  nativeEvent(...)
+     |      nativeEvent(self, eventType: Union[QByteArray, bytes, bytearray], message: PyQt5.sip.voidptr) -> Tuple[bool, int]
+     |  
+     |  nativeParentWidget(...)
+     |      nativeParentWidget(self) -> QWidget
+     |  
+     |  nextInFocusChain(...)
+     |      nextInFocusChain(self) -> QWidget
+     |  
+     |  normalGeometry(...)
+     |      normalGeometry(self) -> QRect
+     |  
+     |  overrideWindowFlags(...)
+     |      overrideWindowFlags(self, type: Union[Qt.WindowFlags, Qt.WindowType])
+     |  
+     |  overrideWindowState(...)
+     |      overrideWindowState(self, state: Union[Qt.WindowStates, Qt.WindowState])
+     |  
+     |  paintEngine(...)
+     |      paintEngine(self) -> QPaintEngine
+     |  
+     |  palette(...)
+     |      palette(self) -> QPalette
+     |  
+     |  parentWidget(...)
+     |      parentWidget(self) -> QWidget
+     |  
+     |  pos(...)
+     |      pos(self) -> QPoint
+     |  
+     |  previousInFocusChain(...)
+     |      previousInFocusChain(self) -> QWidget
+     |  
+     |  raise_(...)
+     |      raise_(self)
+     |  
+     |  receivers(...)
+     |  
+     |  rect(...)
+     |      rect(self) -> QRect
+     |  
+     |  releaseKeyboard(...)
+     |      releaseKeyboard(self)
+     |  
+     |  releaseMouse(...)
+     |      releaseMouse(self)
+     |  
+     |  releaseShortcut(...)
+     |      releaseShortcut(self, id: int)
+     |  
+     |  removeAction(...)
+     |      removeAction(self, action: QAction)
+     |  
+     |  render(...)
+     |      render(self, target: QPaintDevice, targetOffset: QPoint = QPoint(), sourceRegion: QRegion = QRegion(), flags: Union[QWidget.RenderFlags, QWidget.RenderFlag] = QWidget.RenderFlags(QWidget.RenderFlag.DrawWindowBackground|QWidget.RenderFlag.DrawChildren))
+     |      render(self, painter: QPainter, targetOffset: QPoint = QPoint(), sourceRegion: QRegion = QRegion(), flags: Union[QWidget.RenderFlags, QWidget.RenderFlag] = QWidget.RenderFlags(QWidget.RenderFlag.DrawWindowBackground|QWidget.RenderFlag.DrawChildren))
+     |  
+     |  repaint(...)
+     |      repaint(self)
+     |      repaint(self, x: int, y: int, w: int, h: int)
+     |      repaint(self, a0: QRect)
+     |      repaint(self, a0: QRegion)
+     |  
+     |  restoreGeometry(...)
+     |      restoreGeometry(self, geometry: Union[QByteArray, bytes, bytearray]) -> bool
+     |  
+     |  saveGeometry(...)
+     |      saveGeometry(self) -> QByteArray
+     |  
+     |  screen(...)
+     |      screen(self) -> QScreen
+     |  
+     |  scroll(...)
+     |      scroll(self, dx: int, dy: int)
+     |      scroll(self, dx: int, dy: int, a2: QRect)
+     |  
+     |  sender(...)
+     |  
+     |  senderSignalIndex(...)
+     |  
+     |  setAcceptDrops(...)
+     |      setAcceptDrops(self, on: bool)
+     |  
+     |  setAccessibleDescription(...)
+     |      setAccessibleDescription(self, description: str)
+     |  
+     |  setAccessibleName(...)
+     |      setAccessibleName(self, name: str)
+     |  
+     |  setAttribute(...)
+     |      setAttribute(self, attribute: Qt.WidgetAttribute, on: bool = True)
+     |  
+     |  setAutoFillBackground(...)
+     |      setAutoFillBackground(self, enabled: bool)
+     |  
+     |  setBackgroundRole(...)
+     |      setBackgroundRole(self, a0: QPalette.ColorRole)
+     |  
+     |  setBaseSize(...)
+     |      setBaseSize(self, basew: int, baseh: int)
+     |      setBaseSize(self, s: QSize)
+     |  
+     |  setContentsMargins(...)
+     |      setContentsMargins(self, left: int, top: int, right: int, bottom: int)
+     |      setContentsMargins(self, margins: QMargins)
+     |  
+     |  setContextMenuPolicy(...)
+     |      setContextMenuPolicy(self, policy: Qt.ContextMenuPolicy)
+     |  
+     |  setCursor(...)
+     |      setCursor(self, a0: Union[QCursor, Qt.CursorShape])
+     |  
+     |  setDisabled(...)
+     |      setDisabled(self, a0: bool)
+     |  
+     |  setEnabled(...)
+     |      setEnabled(self, a0: bool)
+     |  
+     |  setFixedHeight(...)
+     |      setFixedHeight(self, h: int)
+     |  
+     |  setFixedSize(...)
+     |      setFixedSize(self, a0: QSize)
+     |      setFixedSize(self, w: int, h: int)
+     |  
+     |  setFixedWidth(...)
+     |      setFixedWidth(self, w: int)
+     |  
+     |  setFocus(...)
+     |      setFocus(self)
+     |      setFocus(self, reason: Qt.FocusReason)
+     |  
+     |  setFocusPolicy(...)
+     |      setFocusPolicy(self, policy: Qt.FocusPolicy)
+     |  
+     |  setFocusProxy(...)
+     |      setFocusProxy(self, a0: QWidget)
+     |  
+     |  setFont(...)
+     |      setFont(self, a0: QFont)
+     |  
+     |  setForegroundRole(...)
+     |      setForegroundRole(self, a0: QPalette.ColorRole)
+     |  
+     |  setGeometry(...)
+     |      setGeometry(self, a0: QRect)
+     |      setGeometry(self, ax: int, ay: int, aw: int, ah: int)
+     |  
+     |  setGraphicsEffect(...)
+     |      setGraphicsEffect(self, effect: QGraphicsEffect)
+     |  
+     |  setHidden(...)
+     |      setHidden(self, hidden: bool)
+     |  
+     |  setInputMethodHints(...)
+     |      setInputMethodHints(self, hints: Union[Qt.InputMethodHints, Qt.InputMethodHint])
+     |  
+     |  setLayout(...)
+     |      setLayout(self, a0: QLayout)
+     |  
+     |  setLayoutDirection(...)
+     |      setLayoutDirection(self, direction: Qt.LayoutDirection)
+     |  
+     |  setLocale(...)
+     |      setLocale(self, locale: QLocale)
+     |  
+     |  setMask(...)
+     |      setMask(self, a0: QBitmap)
+     |      setMask(self, a0: QRegion)
+     |  
+     |  setMaximumHeight(...)
+     |      setMaximumHeight(self, maxh: int)
+     |  
+     |  setMaximumSize(...)
+     |      setMaximumSize(self, maxw: int, maxh: int)
+     |      setMaximumSize(self, s: QSize)
+     |  
+     |  setMaximumWidth(...)
+     |      setMaximumWidth(self, maxw: int)
+     |  
+     |  setMinimumHeight(...)
+     |      setMinimumHeight(self, minh: int)
+     |  
+     |  setMinimumSize(...)
+     |      setMinimumSize(self, minw: int, minh: int)
+     |      setMinimumSize(self, s: QSize)
+     |  
+     |  setMinimumWidth(...)
+     |      setMinimumWidth(self, minw: int)
+     |  
+     |  setMouseTracking(...)
+     |      setMouseTracking(self, enable: bool)
+     |  
+     |  setPalette(...)
+     |      setPalette(self, a0: QPalette)
+     |  
+     |  setParent(...)
+     |      setParent(self, parent: QWidget)
+     |      setParent(self, parent: QWidget, f: Union[Qt.WindowFlags, Qt.WindowType])
+     |  
+     |  setShortcutAutoRepeat(...)
+     |      setShortcutAutoRepeat(self, id: int, enabled: bool = True)
+     |  
+     |  setShortcutEnabled(...)
+     |      setShortcutEnabled(self, id: int, enabled: bool = True)
+     |  
+     |  setSizeIncrement(...)
+     |      setSizeIncrement(self, w: int, h: int)
+     |      setSizeIncrement(self, s: QSize)
+     |  
+     |  setSizePolicy(...)
+     |      setSizePolicy(self, a0: QSizePolicy)
+     |      setSizePolicy(self, hor: QSizePolicy.Policy, ver: QSizePolicy.Policy)
+     |  
+     |  setStatusTip(...)
+     |      setStatusTip(self, a0: str)
+     |  
+     |  setStyle(...)
+     |      setStyle(self, a0: QStyle)
+     |  
+     |  setStyleSheet(...)
+     |      setStyleSheet(self, styleSheet: str)
+     |  
+     |  setTabOrder(...)
+     |      setTabOrder(a0: QWidget, a1: QWidget)
+     |  
+     |  setTabletTracking(...)
+     |      setTabletTracking(self, enable: bool)
+     |  
+     |  setToolTip(...)
+     |      setToolTip(self, a0: str)
+     |  
+     |  setToolTipDuration(...)
+     |      setToolTipDuration(self, msec: int)
+     |  
+     |  setUpdatesEnabled(...)
+     |      setUpdatesEnabled(self, enable: bool)
+     |  
+     |  setVisible(...)
+     |      setVisible(self, visible: bool)
+     |  
+     |  setWhatsThis(...)
+     |      setWhatsThis(self, a0: str)
+     |  
+     |  setWindowFilePath(...)
+     |      setWindowFilePath(self, filePath: str)
+     |  
+     |  setWindowFlag(...)
+     |      setWindowFlag(self, a0: Qt.WindowType, on: bool = True)
+     |  
+     |  setWindowFlags(...)
+     |      setWindowFlags(self, type: Union[Qt.WindowFlags, Qt.WindowType])
+     |  
+     |  setWindowIcon(...)
+     |      setWindowIcon(self, icon: QIcon)
+     |  
+     |  setWindowIconText(...)
+     |      setWindowIconText(self, a0: str)
+     |  
+     |  setWindowModality(...)
+     |      setWindowModality(self, windowModality: Qt.WindowModality)
+     |  
+     |  setWindowModified(...)
+     |      setWindowModified(self, a0: bool)
+     |  
+     |  setWindowOpacity(...)
+     |      setWindowOpacity(self, level: float)
+     |  
+     |  setWindowRole(...)
+     |      setWindowRole(self, a0: str)
+     |  
+     |  setWindowState(...)
+     |      setWindowState(self, state: Union[Qt.WindowStates, Qt.WindowState])
+     |  
+     |  setWindowTitle(...)
+     |      setWindowTitle(self, a0: str)
+     |  
+     |  sharedPainter(...)
+     |      sharedPainter(self) -> QPainter
+     |  
+     |  show(...)
+     |      show(self)
+     |  
+     |  showFullScreen(...)
+     |      showFullScreen(self)
+     |  
+     |  showMaximized(...)
+     |      showMaximized(self)
+     |  
+     |  showMinimized(...)
+     |      showMinimized(self)
+     |  
+     |  showNormal(...)
+     |      showNormal(self)
+     |  
+     |  size(...)
+     |      size(self) -> QSize
+     |  
+     |  sizeIncrement(...)
+     |      sizeIncrement(self) -> QSize
+     |  
+     |  sizePolicy(...)
+     |      sizePolicy(self) -> QSizePolicy
+     |  
+     |  stackUnder(...)
+     |      stackUnder(self, a0: QWidget)
+     |  
+     |  statusTip(...)
+     |      statusTip(self) -> str
+     |  
+     |  style(...)
+     |      style(self) -> QStyle
+     |  
+     |  styleSheet(...)
+     |      styleSheet(self) -> str
+     |  
+     |  tabletEvent(...)
+     |      tabletEvent(self, a0: QTabletEvent)
+     |  
+     |  testAttribute(...)
+     |      testAttribute(self, attribute: Qt.WidgetAttribute) -> bool
+     |  
+     |  timerEvent(...)
+     |  
+     |  toolTip(...)
+     |      toolTip(self) -> str
+     |  
+     |  toolTipDuration(...)
+     |      toolTipDuration(self) -> int
+     |  
+     |  underMouse(...)
+     |      underMouse(self) -> bool
+     |  
+     |  ungrabGesture(...)
+     |      ungrabGesture(self, type: Qt.GestureType)
+     |  
+     |  unsetCursor(...)
+     |      unsetCursor(self)
+     |  
+     |  unsetLayoutDirection(...)
+     |      unsetLayoutDirection(self)
+     |  
+     |  unsetLocale(...)
+     |      unsetLocale(self)
+     |  
+     |  update(...)
+     |      update(self)
+     |      update(self, a0: QRect)
+     |      update(self, a0: QRegion)
+     |      update(self, ax: int, ay: int, aw: int, ah: int)
+     |  
+     |  updateGeometry(...)
+     |      updateGeometry(self)
+     |  
+     |  updateMicroFocus(...)
+     |      updateMicroFocus(self)
+     |  
+     |  updatesEnabled(...)
+     |      updatesEnabled(self) -> bool
+     |  
+     |  visibleRegion(...)
+     |      visibleRegion(self) -> QRegion
+     |  
+     |  whatsThis(...)
+     |      whatsThis(self) -> str
+     |  
+     |  width(...)
+     |      width(self) -> int
+     |  
+     |  winId(...)
+     |      winId(self) -> PyQt5.sip.voidptr
+     |  
+     |  window(...)
+     |      window(self) -> QWidget
+     |  
+     |  windowFilePath(...)
+     |      windowFilePath(self) -> str
+     |  
+     |  windowFlags(...)
+     |      windowFlags(self) -> Qt.WindowFlags
+     |  
+     |  windowHandle(...)
+     |      windowHandle(self) -> QWindow
+     |  
+     |  windowIcon(...)
+     |      windowIcon(self) -> QIcon
+     |  
+     |  windowIconChanged = <unbound PYQT_SIGNAL windowIconChanged(QIcon)>
+     |  windowIconText(...)
+     |      windowIconText(self) -> str
+     |  
+     |  windowIconTextChanged = <unbound PYQT_SIGNAL windowIconTextChanged(QString)>
+     |  windowModality(...)
+     |      windowModality(self) -> Qt.WindowModality
+     |  
+     |  windowOpacity(...)
+     |      windowOpacity(self) -> float
+     |  
+     |  windowRole(...)
+     |      windowRole(self) -> str
+     |  
+     |  windowState(...)
+     |      windowState(self) -> Qt.WindowStates
+     |  
+     |  windowTitle(...)
+     |      windowTitle(self) -> str
+     |  
+     |  windowTitleChanged = <unbound PYQT_SIGNAL windowTitleChanged(QString)>
+     |  windowType(...)
+     |      windowType(self) -> Qt.WindowType
+     |  
+     |  x(...)
+     |      x(self) -> int
+     |  
+     |  y(...)
+     |      y(self) -> int
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from PyQt5.QtWidgets.QWidget:
+     |  
+     |  DrawChildren = 2
+     |  
+     |  DrawWindowBackground = 1
+     |  
+     |  IgnoreMask = 4
+     |  
+     |  RenderFlag = <class 'PyQt5.QtWidgets.QWidget.RenderFlag'>
+     |      int([x]) -> integer
+     |      int(x, base=10) -> integer
+     |      
+     |      Convert a number or string to an integer, or return 0 if no arguments
+     |      are given.  If x is a number, return x.__int__().  For floating point
+     |      numbers, this truncates towards zero.
+     |      
+     |      If x is not a number or if base is given, then x must be a string,
+     |      bytes, or bytearray instance representing an integer literal in the
+     |      given base.  The literal can be preceded by '+' or '-' and be surrounded
+     |      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+     |      Base 0 means to interpret the base from the string as an integer literal.
+     |      >>> int('0b100', base=0)
+     |      4
+     |  
+     |  RenderFlags = <class 'PyQt5.QtWidgets.QWidget.RenderFlags'>
+     |      QWidget.RenderFlags()
+     |      QWidget.RenderFlags(f: Union[QWidget.RenderFlags, QWidget.RenderFlag])
+     |      QWidget.RenderFlags(a0: QWidget.RenderFlags)
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from PyQt5.QtCore.QObject:
+     |  
+     |  __getattr__(...)
+     |      __getattr__(self, name: str) -> object
+     |  
+     |  blockSignals(...)
+     |      blockSignals(self, b: bool) -> bool
+     |  
+     |  children(...)
+     |      children(self) -> List[QObject]
+     |  
+     |  deleteLater(...)
+     |      deleteLater(self)
+     |  
+     |  destroyed = <unbound PYQT_SIGNAL destroyed(QObject*)>
+     |  disconnect(...)
+     |      disconnect(a0: QMetaObject.Connection) -> bool
+     |      disconnect(self)
+     |  
+     |  dumpObjectInfo(...)
+     |      dumpObjectInfo(self)
+     |  
+     |  dumpObjectTree(...)
+     |      dumpObjectTree(self)
+     |  
+     |  dynamicPropertyNames(...)
+     |      dynamicPropertyNames(self) -> List[QByteArray]
+     |  
+     |  eventFilter(...)
+     |      eventFilter(self, a0: QObject, a1: QEvent) -> bool
+     |  
+     |  findChild(...)
+     |      findChild(self, type: type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+     |      findChild(self, types: Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> QObject
+     |  
+     |  findChildren(...)
+     |      findChildren(self, type: type, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, name: str = '', options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, type: type, regExp: QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, regExp: QRegExp, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, type: type, re: QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |      findChildren(self, types: Tuple, re: QRegularExpression, options: Union[Qt.FindChildOptions, Qt.FindChildOption] = Qt.FindChildrenRecursively) -> List[QObject]
+     |  
+     |  inherits(...)
+     |      inherits(self, classname: str) -> bool
+     |  
+     |  installEventFilter(...)
+     |      installEventFilter(self, a0: QObject)
+     |  
+     |  isWidgetType(...)
+     |      isWidgetType(self) -> bool
+     |  
+     |  isWindowType(...)
+     |      isWindowType(self) -> bool
+     |  
+     |  killTimer(...)
+     |      killTimer(self, id: int)
+     |  
+     |  metaObject(...)
+     |      metaObject(self) -> QMetaObject
+     |  
+     |  moveToThread(...)
+     |      moveToThread(self, thread: QThread)
+     |  
+     |  objectName(...)
+     |      objectName(self) -> str
+     |  
+     |  objectNameChanged = <unbound PYQT_SIGNAL objectNameChanged(QString)>
+     |  parent(...)
+     |      parent(self) -> QObject
+     |  
+     |  property(...)
+     |      property(self, name: str) -> Any
+     |  
+     |  pyqtConfigure(...)
+     |      QObject.pyqtConfigure(...)
+     |      
+     |      Each keyword argument is either the name of a Qt property or a Qt signal.
+     |      For properties the property is set to the given value which should be of an
+     |      appropriate type.
+     |      For signals the signal is connected to the given value which should be a
+     |      callable.
+     |  
+     |  removeEventFilter(...)
+     |      removeEventFilter(self, a0: QObject)
+     |  
+     |  setObjectName(...)
+     |      setObjectName(self, name: str)
+     |  
+     |  setProperty(...)
+     |      setProperty(self, name: str, value: Any) -> bool
+     |  
+     |  signalsBlocked(...)
+     |      signalsBlocked(self) -> bool
+     |  
+     |  startTimer(...)
+     |      startTimer(self, interval: int, timerType: Qt.TimerType = Qt.CoarseTimer) -> int
+     |  
+     |  thread(...)
+     |      thread(self) -> QThread
+     |  
+     |  tr(...)
+     |      tr(self, sourceText: str, disambiguation: typing.Optional[str] = None, n: int = -1) -> str
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from PyQt5.QtCore.QObject:
+     |  
+     |  staticMetaObject = <PyQt5.QtCore.QMetaObject object>
+     |  
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from PyQt5.QtGui.QPaintDevice:
+     |  
+     |  colorCount(...)
+     |      colorCount(self) -> int
+     |  
+     |  depth(...)
+     |      depth(self) -> int
+     |  
+     |  devicePixelRatio(...)
+     |      devicePixelRatio(self) -> int
+     |  
+     |  devicePixelRatioF(...)
+     |      devicePixelRatioF(self) -> float
+     |  
+     |  devicePixelRatioFScale(...)
+     |      devicePixelRatioFScale() -> float
+     |  
+     |  heightMM(...)
+     |      heightMM(self) -> int
+     |  
+     |  logicalDpiX(...)
+     |      logicalDpiX(self) -> int
+     |  
+     |  logicalDpiY(...)
+     |      logicalDpiY(self) -> int
+     |  
+     |  paintingActive(...)
+     |      paintingActive(self) -> bool
+     |  
+     |  physicalDpiX(...)
+     |      physicalDpiX(self) -> int
+     |  
+     |  physicalDpiY(...)
+     |      physicalDpiY(self) -> int
+     |  
+     |  widthMM(...)
+     |      widthMM(self) -> int
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from PyQt5.QtGui.QPaintDevice:
+     |  
+     |  PaintDeviceMetric = <class 'PyQt5.QtGui.QPaintDevice.PaintDeviceMetric...
+     |      int([x]) -> integer
+     |      int(x, base=10) -> integer
+     |      
+     |      Convert a number or string to an integer, or return 0 if no arguments
+     |      are given.  If x is a number, return x.__int__().  For floating point
+     |      numbers, this truncates towards zero.
+     |      
+     |      If x is not a number or if base is given, then x must be a string,
+     |      bytes, or bytearray instance representing an integer literal in the
+     |      given base.  The literal can be preceded by '+' or '-' and be surrounded
+     |      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+     |      Base 0 means to interpret the base from the string as an integer literal.
+     |      >>> int('0b100', base=0)
+     |      4
+     |  
+     |  PdmDepth = 6
+     |  
+     |  PdmDevicePixelRatio = 11
+     |  
+     |  PdmDevicePixelRatioScaled = 12
+     |  
+     |  PdmDpiX = 7
+     |  
+     |  PdmDpiY = 8
+     |  
+     |  PdmHeight = 2
+     |  
+     |  PdmHeightMM = 4
+     |  
+     |  PdmNumColors = 5
+     |  
+     |  PdmPhysicalDpiX = 9
+     |  
+     |  PdmPhysicalDpiY = 10
+     |  
+     |  PdmWidth = 1
+     |  
+     |  PdmWidthMM = 3
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods inherited from sip.simplewrapper:
+     |  
+     |  __new__(*args, **kwargs) from sip.wrappertype
+     |      Create and return a new object.  See help(type) for accurate signature.
+
+FILE
+    c:\users\grace\documents\all programming\lcs internship 2023 (github)\microjetdetection\scripts\graphs.py
+
+
