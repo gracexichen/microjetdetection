@@ -21,6 +21,10 @@ class MyGUI(QMainWindow):
         self.video = Video()
         self.graphs = Graphs(self, width=5, height=4, dpi=100)
         self.threshold_image = None
+        self.line1 = []
+        self.line2 = []
+        self.line3 = []
+        self.line4 = []
 
         self.graphingwidget.addWidget(self.graphs)
         self.graphs.setMinimumSize(QSize(400, 400))
@@ -192,10 +196,18 @@ class MyGUI(QMainWindow):
         width = width * self.conversion_factor
         speed = speed * self.conversion_factor
 
-        self.graphs.ax1.lines.clear()
-        self.graphs.ax2.lines.clear()
-        self.graphs.ax3.lines.clear()
-        self.graphs.ax4.lines.clear()
+        try:
+            l1 = self.line1.pop()
+            l2 = self.line2.pop()
+            l3 = self.line3.pop()
+            l4 = self.line4.pop()
+
+            l1.remove()
+            l2.remove()
+            l3.remove()
+            l4.remove()
+        except:
+            print("Lines not clearing correctly")
 
         Graphs.frameData.append(frame)
         Graphs.radiusData.append(radius)
@@ -210,14 +222,14 @@ class MyGUI(QMainWindow):
             Graphs.widthData.pop(0)
             Graphs.speedData.pop(0)
 
-        self.graphs.ax1.plot(Graphs.frameData, Graphs.radiusData,
-                             marker=".", markersize=3, markeredgecolor="red")
-        self.graphs.ax2.plot(Graphs.frameData, Graphs.speedData,
-                             marker=".", markersize=3, markeredgecolor="red")
-        self.graphs.ax3.plot(Graphs.frameData, Graphs.widthData,
-                             marker=".", markersize=3, markeredgecolor="red")
-        self.graphs.ax4.plot(Graphs.frameData, Graphs.lengthData,
-                             marker=".", markersize=3, markeredgecolor="red")
+        self.line1 = self.graphs.ax1.plot(Graphs.frameData, Graphs.radiusData,
+                                          marker=".", markersize=3, markeredgecolor="red")
+        self.line2 = self.graphs.ax2.plot(Graphs.frameData, Graphs.speedData,
+                                          marker=".", markersize=3, markeredgecolor="red")
+        self.line3 = self.graphs.ax3.plot(Graphs.frameData, Graphs.widthData,
+                                          marker=".", markersize=3, markeredgecolor="red")
+        self.line4 = self.graphs.ax4.plot(Graphs.frameData, Graphs.lengthData,
+                                          marker=".", markersize=3, markeredgecolor="red")
 
         self.graphs.ax1.relim()
         self.graphs.ax2.relim()

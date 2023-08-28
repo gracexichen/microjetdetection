@@ -62,7 +62,7 @@ class Video(QThread):
 
             prev_droplet_list = droplet_list
 
-            print(droplet_speed)
+            # print(droplet_speed)
             self.information_array.append(
                 [f, cimg, radius, droplet_speed, jet_width, jet_length, self.frame_number])
         self.save_data()
@@ -108,7 +108,7 @@ class Video(QThread):
         self.frame_number = 0
         # print(self.information_array)
         while self.ThreadActive:  # while the video isn't paused
-            print(self.is_paused)
+            # print(self.is_paused)
             if not self.is_paused:
                 # print(self.frame_number)
                 if self.frame_number < len(self.information_array):
